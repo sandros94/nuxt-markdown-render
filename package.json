@@ -5,6 +5,15 @@
   "repository": "https://github.com/sandros94/nuxt-markdown-render",
   "license": "MIT",
   "type": "module",
+  "author": {
+    "name": "Sandro Circi",
+    "email": "sandro.circi@digitoolmedia.com"
+  },
+  "build": {
+    "externals": [
+      "defu"
+    ]
+  },
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
