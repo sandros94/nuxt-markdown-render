@@ -7,7 +7,18 @@ import defu from 'defu'
 import { fileURLToPath } from 'url'
 
 export interface ModuleOptions {
+  /**
+   * HTML tag name for the component.
+   * 
+   * @default 'div'
+   */
   as: string
+  /**
+   * Component's default name.
+   * 
+   * @default 'NuxtMarkdown'
+   */
+  componentName: string
   options: MarkdownItOptions
   plugins: PluginSimple[]
   /**
@@ -23,6 +34,7 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     as: 'div',
+    componentName: 'NuxtMarkdown',
     options: {},
     plugins: []
   },
@@ -40,7 +52,7 @@ export default defineNuxtModule<ModuleOptions>({
     )
 
     addComponent({
-      name: 'NuxtMarkdown',
+      name: options.componentName,
       filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
       global: options.global
     })

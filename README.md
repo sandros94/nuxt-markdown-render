@@ -81,6 +81,7 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
     
       nuxtMarkdownRender: {
         as: 'article',
+        componentName: 'NotNuxtMarkdown',
         options: {
           html: true
         },
