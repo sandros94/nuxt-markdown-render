@@ -8,29 +8,31 @@ import type {
   Options as MarkdownItOptions,
   PluginSimple,
 } from 'markdown-it'
-import { computed, defineProps, h, ref } from 'vue'
-import type { PropType } from 'vue'
 import { defu } from 'defu'
-
+import { computed, h, ref } from 'vue'
+import type { PropType } from 'vue'
 import { useRuntimeConfig } from '#imports'
+
+interface Config {
+  as: string
+  options: MarkdownItOptions
+  plugins: PluginSimple[]
+}
 
 const {
   as: defaultAs,
   options: defaultOptions,
-  plugins: defaultPlugins
+  plugins: defaultPlugins,
 } = useRuntimeConfig().public.nuxtMarkdownRender
 
 const props = defineProps({
   as: {
     type: String,
+    required: false,
     default: undefined,
   },
-  source: {
-    type: String,
-    required: true,
-  },
   options: {
-    type: Object as PropType<MarkdownItOptions>,
+  type: Object as PropType<MarkdownItOptions>,
     required: false,
     default: () => ({}),
   },
@@ -39,16 +41,20 @@ const props = defineProps({
     required: false,
     default: () => [],
   },
+  source: {
+    type: String,
+    required: true,
+  },
 })
 
-const config = defu({
+const config = defu<Config, Config[]>({
   as: props.as,
   options: props.options,
-  plugins: props.plugins
+  plugins: props.plugins,
 }, {
   as: defaultAs,
   options: defaultOptions,
-  plugins: defaultPlugins
+  plugins: defaultPlugins,
 })
 
 const md = ref<MarkdownIt>(new MarkdownIt(config.options))
