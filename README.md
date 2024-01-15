@@ -83,11 +83,12 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
     ```
     This will configure the following:
     - render them as [`article`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) HTML tags.
+    - change the component name to `NotNuxtMarkdown`.
     - enable [HTML tags in source](https://markdown-it.github.io/markdown-it/#MarkdownIt.new).
     - load the [markdown-it-mdc](https://github.com/antfu/markdown-it-mdc) plugin.
     - mark the `NuxtMarkdown` component [`global`](https://nuxt.com/docs/guide/directory-structure/components#dynamic-components).
 
-That's it! You can now use ``<NuxtMarkdown :source="`my markdown text`" />`` composables in your Nuxt app ✨
+That's it! You can now use `nuxt-markdown-render` module in your Nuxt app ✨
 
 ## Development
 
