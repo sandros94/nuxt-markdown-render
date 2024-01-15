@@ -1,3 +1,5 @@
+![nuxt-markdown-render](https://raw.githubusercontent.com/sandros94/nuxt-markdown-render/main/docs/public/nuxt-markdown-render_cover.png)
+
 # nuxt-markdown-render
 
 [![npm version][npm-version-src]][npm-version-href]
