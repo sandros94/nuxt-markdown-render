@@ -1,12 +1,3 @@
-<!--
-Get your module up and running quickly.
-
-Find and replace all on all files (CMD+SHIFT+F):
-- Name: My Module
-- Package name: nuxt-markdown-render
-- Description: My new Nuxt module
--->
-
 # nuxt-markdown-render
 
 [![npm version][npm-version-src]][npm-version-href]
@@ -70,7 +61,7 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
     })
     ```
 
-3. Customize your defaults via `nuxt-markdown-render` inside your `nuxt.config.ts`
+3. Customize your defaults via `nuxtMarkdownRender` inside your `nuxt.config.ts`
     ```ts
     import pluginMdc from 'markdown-it-mdc'
 
@@ -90,13 +81,13 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
       }
     })
     ```
-    This will do the following:
+    This will configure the following:
     - render them as [`article`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) HTML tags.
     - enable [HTML tags in source](https://markdown-it.github.io/markdown-it/#MarkdownIt.new).
     - load the [markdown-it-mdc](https://github.com/antfu/markdown-it-mdc) plugin.
     - mark the `NuxtMarkdown` component [`global`](https://nuxt.com/docs/guide/directory-structure/components#dynamic-components).
 
-That's it! You can now use nuxt-markdown-render in your Nuxt app ✨
+That's it! You can now use ``<NuxtMarkdown :source="`my markdown text`" />`` composables in your Nuxt app ✨
 
 ## Development
 
