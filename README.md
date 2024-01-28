@@ -65,8 +65,6 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
 
 3. Customize your defaults via `nuxtMarkdownRender` inside your `nuxt.config.ts`
     ```ts
-    import pluginMdc from 'markdown-it-mdc'
-
     export default defineNuxtConfig({
       modules: [
         'nuxt-markdown-render'
@@ -78,7 +76,6 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
         options: {
           html: true
         },
-        plugins: ['pluginMdc'],
         global: true
       }
     })
@@ -87,8 +84,58 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
     - render them as [`article`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) HTML tags.
     - change the component name to `NotNuxtMarkdown`.
     - enable [HTML tags in source](https://markdown-it.github.io/markdown-it/#MarkdownIt.new).
-    - load the [markdown-it-mdc](https://github.com/antfu/markdown-it-mdc) plugin.
-    - mark the `NuxtMarkdown` component [`global`](https://nuxt.com/docs/guide/directory-structure/components#dynamic-components).
+    - mark the `NuxtMarkdown` component as [`global`](https://nuxt.com/docs/guide/directory-structure/components#dynamic-components).
+
+### Using Plugins
+
+In order to use markdown-it plugins you have to create your own `NuxtMarkdown` component, here a short introduction on how to do it:
+
+1. Rename the default component name in your `nuxt.config.ts`:
+    ```ts
+    export default defineNuxtConfig({
+      modules: [
+        'nuxt-markdown-render'
+      ],
+      nuxtMarkdownRender: {
+        componentName: 'BlankNuxtMarkdown' // be aware of letter casing
+        // add any other option you prefer
+      }
+    })
+    ```
+
+2. Create a `~/components/nuxt-markdown.vue` component in your project, with the following content (substitute plugins with the desired ones):
+    ```vue
+    <template>
+      <div>
+        <BlankNuxtMarkdown
+          :source="source"
+          :options="{ html: true }"
+          :plugins="[pluginMdc, shiki]"
+        />
+      </div>
+    </template>
+
+    <script setup>
+    import pluginMdc from 'markdown-it-mdc'
+    import shikiImport from '@shikijs/markdown-it'
+
+    const shiki = await shikiImport({
+      themes: {
+        light: 'vitesse-light',
+        dark: 'vitesse-dark',
+      }
+    })
+
+    defineProps({
+      source: {
+        type: String,
+        required: true,
+      },
+    })
+    </script>
+    ```
+
+3. Use this new `NuxtMarkdown` component with all the plugins already configured.
 
 That's it! You can now use `nuxt-markdown-render` module in your Nuxt app ✨
 

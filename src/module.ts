@@ -1,8 +1,5 @@
 import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
-import type {
-  Options as MarkdownItOptions,
-  PluginSimple,
-} from 'markdown-it'
+import type { Options as MarkdownItOptions } from 'markdown-it'
 import defu from 'defu'
 import { fileURLToPath } from 'url'
 
@@ -20,7 +17,6 @@ export interface ModuleOptions {
    */
   componentName: string
   options: MarkdownItOptions
-  plugins: PluginSimple[]
   /**
    * @default false
    */
@@ -35,8 +31,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     as: 'div',
     componentName: 'NuxtMarkdown',
-    options: {},
-    plugins: []
+    options: {}
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
@@ -46,8 +41,7 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.runtimeConfig.public.nuxtMarkdownRender,
       {
         as: options.as,
-        options: options.options,
-        plugins: options.plugins
+        options: options.options
       }
     )
 

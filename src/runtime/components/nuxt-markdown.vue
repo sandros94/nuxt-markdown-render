@@ -16,13 +16,11 @@ import { useRuntimeConfig } from '#imports'
 interface Config {
   as: string
   options: MarkdownItOptions
-  plugins: PluginSimple[]
 }
 
 const {
   as: defaultAs,
   options: defaultOptions,
-  plugins: defaultPlugins,
 } = useRuntimeConfig().public.nuxtMarkdownRender
 
 const props = defineProps({
@@ -50,16 +48,14 @@ const props = defineProps({
 const config = defu<Config, Config[]>({
   as: props.as,
   options: props.options,
-  plugins: props.plugins,
 }, {
   as: defaultAs,
   options: defaultOptions,
-  plugins: defaultPlugins,
 })
 
 const md = ref<MarkdownIt>(new MarkdownIt(config.options))
 
-for (const plugin of config.plugins) {
+for (const plugin of props.plugins) {
   md.value.use(plugin)
 }
 
