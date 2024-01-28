@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.1.2
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.1.1...v1.1.2)
+
+### 🩹 Fixes
+
+- Remove plugin from runtimeConfig, follow #1 for info ([#1](https://github.com/sandros94/nuxt-markdown-render/issues/1))
+
+### 🏡 Chore
+
+- **vitest:** Actually test markdown content rendering ([46fbf8f](https://github.com/sandros94/nuxt-markdown-render/commit/46fbf8f))
+- Forgot license ([37ef62f](https://github.com/sandros94/nuxt-markdown-render/commit/37ef62f))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+- Sandro Circi ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.1.1
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.1.0...v1.1.1)
