@@ -98,6 +98,11 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
       ],
       nuxtMarkdownRender: {
         componentName: 'BlankNuxtMarkdown', // be aware of letter casing
+        options: {
+          html: true,
+          linkify: true,
+          xhtmlOut: true,
+        },
         vueRuntimeCompiler: true // enable this if a plugin needs to render vue components
       }
     })
@@ -117,6 +122,8 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
     <script setup lang="ts">
     import type { PropType } from 'vue'
     import type { Options as MarkdownItOptions } from 'markdown-it'
+
+    // import installed plugins
     import shikiPlugin from '@shikijs/markdown-it'
     import mdcPlugin from 'markdown-it-mdc'
 
