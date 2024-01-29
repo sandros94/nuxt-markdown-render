@@ -21,17 +21,26 @@ export interface ModuleOptions {
    * @default false
    */
   global?: boolean | 'sync'
+  /**
+   * Enable vue runtime compiler. Required to render components via plugins such markdown-it-mdc.
+   * @default false
+   */
+  vueRuntimeCompiler: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: 'nuxt-markdown-render',
-    configKey: 'nuxtMarkdownRender'
+    configKey: 'nuxtMarkdownRender',
+    compatibility: {
+      nuxt: '^3.5.0'
+    }
   },
   defaults: {
     as: 'div',
     componentName: 'NuxtMarkdown',
-    options: {}
+    options: {},
+    vueRuntimeCompiler: false
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
@@ -41,9 +50,14 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.runtimeConfig.public.nuxtMarkdownRender,
       {
         as: options.as,
-        options: options.options
+        options: options.options,
+        vueRuntimeCompiler: options.vueRuntimeCompiler
       }
     )
+
+    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.vueRuntimeCompiler) {
+      nuxt.options.vue.runtimeCompiler = true
+    }
 
     addComponent({
       name: options.componentName,

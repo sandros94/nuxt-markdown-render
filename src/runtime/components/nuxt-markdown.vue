@@ -9,8 +9,8 @@ import type {
   PluginSimple,
 } from 'markdown-it'
 import { defu } from 'defu'
-import { computed, h, ref } from 'vue'
-import type { PropType } from 'vue'
+import { compile, computed, h, ref } from 'vue'
+import type { PropType, Component } from 'vue'
 import { useRuntimeConfig } from '#imports'
 
 interface Config {
@@ -21,6 +21,7 @@ interface Config {
 const {
   as: defaultAs,
   options: defaultOptions,
+  vueRuntimeCompiler,
 } = useRuntimeConfig().public.nuxtMarkdownRender
 
 const props = defineProps({
@@ -43,6 +44,16 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  components: {
+    type: Object as PropType<Record<string, Component>>,
+    required: false,
+    default: () => ({}),
+  },
+  forceHtml: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 const config = defu<Config, Config[]>({
@@ -61,5 +72,14 @@ for (const plugin of props.plugins) {
 
 const content = computed(() => md.value.render(props.source))
 
-const NuxtMarkdown = () => h(config.as, { innerHTML: content.value })
+const NuxtMarkdown = () => {
+  if (props.forceHtml || !vueRuntimeCompiler) {
+    return h(config.as, { innerHTML: content.value, })
+  } else {
+    return h({
+      components: props.components,
+      render: compile(content.value),
+    })
+  }
+}
 </script>

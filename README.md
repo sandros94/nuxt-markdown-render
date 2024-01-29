@@ -97,8 +97,8 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
         'nuxt-markdown-render'
       ],
       nuxtMarkdownRender: {
-        componentName: 'BlankNuxtMarkdown' // be aware of letter casing
-        // add any other option you prefer
+        componentName: 'BlankNuxtMarkdown', // be aware of letter casing
+        vueRuntimeCompiler: true // enable this if a plugin needs to render vue components
       }
     })
     ```
@@ -106,20 +106,24 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
 2. Create a `~/components/nuxt-markdown.vue` component in your project, with the following content (substitute plugins with the desired ones):
     ```vue
     <template>
-      <div>
-        <BlankNuxtMarkdown
-          :source="source"
-          :options="{ html: true }"
-          :plugins="[pluginMdc, shiki]"
-        />
-      </div>
+      <BlankNuxtMarkdown
+        :source="source"
+        :options="options"
+        :plugins="[mdcPlugin, shiki]"
+        :components="{ Alert }"
+      />
     </template>
 
-    <script setup>
-    import pluginMdc from 'markdown-it-mdc'
-    import shikiImport from '@shikijs/markdown-it'
+    <script setup lang="ts">
+    import type { PropType } from 'vue'
+    import type { Options as MarkdownItOptions } from 'markdown-it'
+    import shikiPlugin from '@shikijs/markdown-it'
+    import mdcPlugin from 'markdown-it-mdc'
 
-    const shiki = await shikiImport({
+    // You could either use global components or import them here
+    import { Alert } from '#components'
+
+    const shiki = await shikiPlugin({
       themes: {
         light: 'vitesse-light',
         dark: 'vitesse-dark',
@@ -127,10 +131,15 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
     })
 
     defineProps({
+      options:{
+        type: Object as PropType<MarkdownItOptions>,
+        required: false,
+        default: () => ({}),
+      },
       source: {
         type: String,
         required: true,
-      },
+      }
     })
     </script>
     ```
