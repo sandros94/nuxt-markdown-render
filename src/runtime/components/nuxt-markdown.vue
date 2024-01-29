@@ -4,10 +4,9 @@
 
 <script setup lang="ts">
 import type {
-  Options as MarkdownItOptions,
+  MarkdownItOptions,
   PluginSimple,
-} from 'markdown-it'
-import { compile, h } from 'vue'
+} from '../types'
 import type { PropType, Component } from 'vue'
 import { useNuxtMarkdown } from '#imports'
 
@@ -43,19 +42,10 @@ const props = defineProps({
   },
 })
 
-const { config, content, vueRuntimeCompiler } = useNuxtMarkdown(props.source, {
+const { rendered } = useNuxtMarkdown(props.source, {
   options: props.options,
   plugins: props.plugins,
 })
 
-const NuxtMarkdown = () => {
-  if (props.forceHtml || !vueRuntimeCompiler) {
-    return h(config.as, { innerHTML: content.value, })
-  } else {
-    return h({
-      components: props.components,
-      render: compile(content.value),
-    })
-  }
-}
+const NuxtMarkdown = rendered
 </script>

@@ -90,14 +90,13 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
 
 In order to use markdown-it plugins you have to create your own `NuxtMarkdown` component, here a short introduction on how to do it:
 
-1. Rename the default component name in your `nuxt.config.ts`:
+1. Based on the desired plugin be sure to have the right options for this module inside your `nuxt.config.ts`:
     ```ts
     export default defineNuxtConfig({
       modules: [
         'nuxt-markdown-render'
       ],
       nuxtMarkdownRender: {
-        componentName: 'BlankNuxtMarkdown', // be aware of letter casing
         options: {
           html: true,
           linkify: true,
@@ -108,45 +107,41 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
     })
     ```
 
-2. Create a `~/components/nuxt-markdown.vue` component in your project, with the following content (substitute plugins with the desired ones):
+2. Create a `~/components/NuxtMarkdown.vue` component to override the default one, with the following structure (substitute plugins with the desired ones):
     ```vue
     <template>
-      <BlankNuxtMarkdown
-        :source="source"
-        :options="options"
-        :plugins="[mdcPlugin, shiki]"
-        :components="{ Alert }"
-      />
+      <NuxtMarkdown />
     </template>
 
     <script setup lang="ts">
-    import type { PropType } from 'vue'
-    import type { Options as MarkdownItOptions } from 'markdown-it'
-
     // import installed plugins
-    import shikiPlugin from '@shikijs/markdown-it'
+    import shiki from '@shikijs/markdown-it'
     import mdcPlugin from 'markdown-it-mdc'
 
-    // You could either use global components or import them here
-    import { Alert } from '#components'
+    // You could either use global components or manually import them here
+    import { Alert, Grid } from '#components'
 
-    const shiki = await shikiPlugin({
-      themes: {
-        light: 'vitesse-light',
-        dark: 'vitesse-dark',
-      }
-    })
-
-    defineProps({
-      options:{
-        type: Object as PropType<MarkdownItOptions>,
-        required: false,
-        default: () => ({}),
-      },
+    const props = defineProps({
       source: {
         type: String,
         required: true,
-      }
+      },
+    })
+
+    const { rendered: NuxtMarkdown } = useNuxtMarkdown(props.source, {
+      components: {
+        Alert,
+        Grid
+      },
+      plugins: [
+        mdcPlugin,
+        await shiki({
+          themes: {
+            light: 'vitesse-light',
+            dark: 'vitesse-dark'
+          }
+        })
+      ],
     })
     </script>
     ```

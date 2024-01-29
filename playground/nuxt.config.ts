@@ -1,5 +1,8 @@
 export default defineNuxtConfig({
-  modules: ['../src/module'],
+  alias: {
+    'nuxt-markdown-render': '../src/module'
+  },
+  modules: ['nuxt-markdown-render'],
   nuxtMarkdownRender: {
     options: {
       html: true,
