@@ -17,7 +17,7 @@ const props = defineProps({
     default: undefined,
   },
   options: {
-  type: Object as PropType<MarkdownItOptions>,
+    type: Object as PropType<MarkdownItOptions>,
     required: false,
     default: () => ({}),
   },
