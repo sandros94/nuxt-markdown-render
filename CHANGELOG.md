@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v1.2.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.1.2...v1.2.0)
+
+### 🚀 Enhancements
+
+- Support vue components when using the appropriate plugins, fixes #2 ([#2](https://github.com/sandros94/nuxt-markdown-render/issues/2))
+- UseNuxtMarkdown composable ([016c2aa](https://github.com/sandros94/nuxt-markdown-render/commit/016c2aa))
+
+### 💅 Refactors
+
+- Improved composable and types, simplified the creation of custom md component ([edd4b7f](https://github.com/sandros94/nuxt-markdown-render/commit/edd4b7f))
+
+### 🏡 Chore
+
+- Update lint preferences ([27cac7e](https://github.com/sandros94/nuxt-markdown-render/commit/27cac7e))
+- Update playground ([891aabb](https://github.com/sandros94/nuxt-markdown-render/commit/891aabb))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.1.2
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.1.1...v1.1.2)
