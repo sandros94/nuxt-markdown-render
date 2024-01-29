@@ -1,4 +1,9 @@
-import { defineNuxtModule, addComponent, createResolver } from '@nuxt/kit'
+import {
+  defineNuxtModule,
+  addComponent,
+  addImportsDir,
+  createResolver
+} from '@nuxt/kit'
 import type { Options as MarkdownItOptions } from 'markdown-it'
 import defu from 'defu'
 import { fileURLToPath } from 'url'
@@ -10,13 +15,14 @@ export interface ModuleOptions {
    * @default 'div'
    */
   as: string
+  options: MarkdownItOptions
+  importComponent: boolean
   /**
    * Component's default name.
    * 
    * @default 'NuxtMarkdown'
    */
   componentName: string
-  options: MarkdownItOptions
   /**
    * @default false
    */
@@ -38,8 +44,9 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     as: 'div',
-    componentName: 'NuxtMarkdown',
     options: {},
+    importComponent: true,
+    componentName: 'NuxtMarkdown',
     vueRuntimeCompiler: false
   },
   setup (options, nuxt) {
@@ -50,6 +57,7 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.runtimeConfig.public.nuxtMarkdownRender,
       {
         as: options.as,
+        importComponent: options.importComponent,
         options: options.options,
         vueRuntimeCompiler: options.vueRuntimeCompiler
       }
@@ -59,11 +67,15 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.vue.runtimeCompiler = true
     }
 
-    addComponent({
-      name: options.componentName,
-      filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
-      global: options.global
-    })
+    addImportsDir(resolve(runtimeDir, 'composables'))
+
+    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.importComponent) {
+      addComponent({
+        name: options.componentName,
+        filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
+        global: options.global
+      })
+    }
   }
 })
 

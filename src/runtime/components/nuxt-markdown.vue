@@ -3,26 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import MarkdownIt from 'markdown-it'
 import type {
   Options as MarkdownItOptions,
   PluginSimple,
 } from 'markdown-it'
-import { defu } from 'defu'
-import { compile, computed, h, ref } from 'vue'
+import { compile, h } from 'vue'
 import type { PropType, Component } from 'vue'
-import { useRuntimeConfig } from '#imports'
-
-interface Config {
-  as: string
-  options: MarkdownItOptions
-}
-
-const {
-  as: defaultAs,
-  options: defaultOptions,
-  vueRuntimeCompiler,
-} = useRuntimeConfig().public.nuxtMarkdownRender
+import { useNuxtMarkdown } from '#imports'
 
 const props = defineProps({
   as: {
@@ -56,21 +43,10 @@ const props = defineProps({
   },
 })
 
-const config = defu<Config, Config[]>({
-  as: props.as,
+const { config, content, vueRuntimeCompiler } = useNuxtMarkdown(props.source, {
   options: props.options,
-}, {
-  as: defaultAs,
-  options: defaultOptions,
+  plugins: props.plugins,
 })
-
-const md = ref<MarkdownIt>(new MarkdownIt(config.options))
-
-for (const plugin of props.plugins) {
-  md.value.use(plugin)
-}
-
-const content = computed(() => md.value.render(props.source))
 
 const NuxtMarkdown = () => {
   if (props.forceHtml || !vueRuntimeCompiler) {
