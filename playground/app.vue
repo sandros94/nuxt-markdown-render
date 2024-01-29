@@ -2,7 +2,6 @@
   <div>
     <NuxtMarkdown
       :source="md"
-      :options="{ html: true }"
     />
   </div>
 </template>
