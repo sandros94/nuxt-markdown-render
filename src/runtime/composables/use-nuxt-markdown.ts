@@ -51,6 +51,7 @@ export const useNuxtMarkdown = (source: string, config?: Partial<Config>) => {
   return {
     config: configDef,
     content,
+    md,
     rendered,
     vueRuntimeCompiler
   }

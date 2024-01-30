@@ -115,6 +115,7 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
 
     <script setup lang="ts">
     // import installed plugins
+    import anchor from 'markdown-it-anchor'
     import shiki from '@shikijs/markdown-it'
     import mdcPlugin from 'markdown-it-mdc'
 
@@ -128,21 +129,23 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
       },
     })
 
-    const { rendered: NuxtMarkdown } = useNuxtMarkdown(props.source, {
+    const { rendered: NuxtMarkdown, md } = useNuxtMarkdown(props.source, {
       components: {
         Alert,
         Grid
       },
       plugins: [
-        mdcPlugin,
         await shiki({
           themes: {
             light: 'vitesse-light',
             dark: 'vitesse-dark'
           }
-        })
+        }),
+        mdcPlugin
       ],
     })
+
+    md.value.use(anchor, { level: 2 })
     </script>
     ```
 
