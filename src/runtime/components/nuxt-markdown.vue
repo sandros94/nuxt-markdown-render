@@ -8,7 +8,7 @@ import type {
   PluginSimple,
 } from '../types'
 import type { PropType, Component } from 'vue'
-import { useNuxtMarkdown } from '#imports'
+import { useNuxtMarkdown } from '../composables/use-nuxt-markdown'
 
 const props = defineProps({
   as: {
