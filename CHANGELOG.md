@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.3.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.2.0...v1.3.0)
+
+### 🚀 Enhancements
+
+- Customize composable name ([d6df195](https://github.com/sandros94/nuxt-markdown-render/commit/d6df195))
+
+### 🩹 Fixes
+
+- Export md constructor for futher customization ([5d2b25a](https://github.com/sandros94/nuxt-markdown-render/commit/5d2b25a))
+- Explicit import of useNuxtMarkdown composable ([ff2990c](https://github.com/sandros94/nuxt-markdown-render/commit/ff2990c))
+- Ts2742 error on module build ([38debc2](https://github.com/sandros94/nuxt-markdown-render/commit/38debc2))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.2.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.1.2...v1.2.0)
