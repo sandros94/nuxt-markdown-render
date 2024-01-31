@@ -2,6 +2,13 @@
   "name": "nuxt-markdown-render",
   "version": "1.3.0",
   "description": "A simple, lightweight markdown-it wrapper for Nuxt written in pure typescript.",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "md",
+    "markdown",
+    "markdown-it"
+  ],
   "repository": "https://github.com/sandros94/nuxt-markdown-render",
   "license": "MIT",
   "type": "module",
