@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.4.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.3.0...v1.4.0)
+
+### 🚀 Enhancements
+
+- Make NuxtMarkdown component reactive ([a97d813](https://github.com/sandros94/nuxt-markdown-render/commit/a97d813))
+
+### 🏡 Chore
+
+- Package keywords ([0928e16](https://github.com/sandros94/nuxt-markdown-render/commit/0928e16))
+- Update playground ([dd39bc0](https://github.com/sandros94/nuxt-markdown-render/commit/dd39bc0))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.3.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.2.0...v1.3.0)
