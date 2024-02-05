@@ -8,7 +8,8 @@ export default defineNuxtConfig({
       html: true,
       linkify: true,
       xhtmlOut: true,
-    }
+    },
+    vueRuntimeCompiler: false,
   },
   devtools: { enabled: true }
 })
