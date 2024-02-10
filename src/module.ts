@@ -2,7 +2,6 @@ import {
   defineNuxtModule,
   addComponent,
   addImports,
-  addImportsDir,
   createResolver
 } from '@nuxt/kit'
 import type { Options as MarkdownItOptions } from 'markdown-it'
@@ -79,7 +78,6 @@ export default defineNuxtModule<ModuleOptions>({
       from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown.ts'),
       name: 'useNuxtMarkdown'
     })
-    addImportsDir(resolve(runtimeDir, 'composables'))
     addComponent({
       filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
       global: options.global,
