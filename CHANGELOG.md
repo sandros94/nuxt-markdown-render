@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.4.1
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.4.0...v1.4.1)
+
+### 🩹 Fixes
+
+- Double importing composable ([3c31c35](https://github.com/sandros94/nuxt-markdown-render/commit/3c31c35))
+
+### 🏡 Chore
+
+- Add lint:fix command ([d2f5c66](https://github.com/sandros94/nuxt-markdown-render/commit/d2f5c66))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.4.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.3.0...v1.4.0)
