@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.5.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.4.1...v1.5.0)
+
+### 🚀 Enhancements
+
+- ⚠️  Change options naming and optionally disable importing ([414744c](https://github.com/sandros94/nuxt-markdown-render/commit/414744c))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Change options naming and optionally disable importing ([414744c](https://github.com/sandros94/nuxt-markdown-render/commit/414744c))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.4.1
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.4.0...v1.4.1)
