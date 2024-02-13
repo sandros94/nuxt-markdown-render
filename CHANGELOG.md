@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.5.1
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.5.0...v1.5.1)
+
+### 🩹 Fixes
+
+- Composable and component importing ([fbf2bfa](https://github.com/sandros94/nuxt-markdown-render/commit/fbf2bfa))
+
+### 🏡 Chore
+
+- Reset release script ([68a9c33](https://github.com/sandros94/nuxt-markdown-render/commit/68a9c33))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.5.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.4.1...v1.5.0)
