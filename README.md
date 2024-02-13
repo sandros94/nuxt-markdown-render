@@ -72,7 +72,7 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
     
       nuxtMarkdownRender: {
         as: 'article',
-        componentName: 'NotNuxtMarkdown',
+        component: 'NotNuxtMarkdown', // false to disable Nuxt's auto import
         options: {
           html: true
         },

@@ -21,13 +21,13 @@ export interface ModuleOptions {
    * 
    * @default 'NuxtMarkdown'
    */
-  componentName: string
+  component: string | false
   /**
    * Composable's default name.
    * 
    * @default 'useNuxtMarkdown'
    */
-  composableName: string
+  composable: string | false
   /**
    * @default false
    */
@@ -50,8 +50,8 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {
     as: 'div',
     options: {},
-    componentName: 'NuxtMarkdown',
-    composableName: 'useNuxtMarkdown',
+    component: 'NuxtMarkdown',
+    composable: 'useNuxtMarkdown',
     vueRuntimeCompiler: false
   },
   setup (options, nuxt) {
@@ -63,26 +63,28 @@ export default defineNuxtModule<ModuleOptions>({
       {
         as: options.as,
         options: options.options,
-        componentName: options.componentName,
-        composableName: options.composableName,
+        component: options.component,
+        composable: options.composable,
         vueRuntimeCompiler: options.vueRuntimeCompiler
       }
     )
 
-    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.vueRuntimeCompiler) {
+    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.vueRuntimeCompiler)
       nuxt.options.vue.runtimeCompiler = true
-    }
 
-    addImports({
-      as : nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composableName,
-      from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown.ts'),
-      name: 'useNuxtMarkdown'
-    })
-    addComponent({
-      filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
-      global: options.global,
-      name: nuxt.options.runtimeConfig.public.nuxtMarkdownRender.componentName
-    })
+    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composable !== false)
+      addImports({
+        as : nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composable,
+        from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown.ts'),
+        name: 'useNuxtMarkdown'
+      })
+    
+    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.component !== false)
+      addComponent({
+        filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
+        global: options.global,
+        name: nuxt.options.runtimeConfig.public.nuxtMarkdownRender.component
+      })
   }
 })
 
