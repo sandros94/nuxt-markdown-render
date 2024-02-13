@@ -75,13 +75,13 @@ export default defineNuxtModule<ModuleOptions>({
     if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composable !== false)
       addImports({
         as : nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composable,
-        from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown.ts'),
+        from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown'),
         name: 'useNuxtMarkdown'
       })
     
     if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.component !== false)
       addComponent({
-        filePath: resolve(runtimeDir, 'components', 'nuxt-markdown.vue'),
+        filePath: resolve(runtimeDir, 'components', 'nuxt-markdown'),
         global: options.global,
         name: nuxt.options.runtimeConfig.public.nuxtMarkdownRender.component
       })
