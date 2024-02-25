@@ -153,6 +153,19 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
 
 That's it! You can now use `nuxt-markdown-render` module in your Nuxt app ✨
 
+### `useNuxtMarkdown` exports
+
+The following are the available exports for `useNuxtMarkdown` composable.
+
+```ts
+const {
+  config,    // configs in use, currently for debuging purposes
+  content,   // rendered content from markdown-it
+  md,        // main parser/renderer
+  rendered,  // rendered vue component based on `content`
+} = useNuxtMarkdown(source, configs)
+```
+
 ## Development
 
 ```bash
