@@ -49,10 +49,12 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: Maybe
   }
 
   return {
-    config: configDef,
+    config: {
+      ...configDef,
+      vueRuntimeCompiler
+    },
     content,
     md,
-    rendered,
-    vueRuntimeCompiler
+    rendered
   }
 }
