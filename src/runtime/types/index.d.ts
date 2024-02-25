@@ -5,11 +5,11 @@ import type {
 } from 'markdown-it'
 
 export interface Config {
-  as: string
-  options: MarkdownItOptions
-  components: Record<string, Component>
-  plugins: PluginSimple[]
-  forceHtml: boolean
+  as?: string
+  options?: MarkdownItOptions
+  components?: Record<string, Component>
+  plugins?: PluginSimple[]
+  forceHtml?: boolean
 }
 
 export type MarkdownItOptions = MarkdownItOptions
