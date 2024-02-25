@@ -1,9 +1,9 @@
 import MarkdownIt from 'markdown-it'
 import { compile, computed, h, ref, toValue } from 'vue'
-import type { MaybeRef } from 'vue'
+import type { MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
 import { useRuntimeConfig } from '#imports'
-import type { Config, MaybeRefPartial } from '../types'
+import type { Config } from '../types'
 
 /**
  * A composable that accepts a markdown string and returns the rendered HTML.
@@ -13,7 +13,7 @@ import type { Config, MaybeRefPartial } from '../types'
  * 
  * @returns an object with rendered content, rendered HTML and current configs.
  */
-export const useNuxtMarkdown = (source: MaybeRef<string>, config?: MaybeRefPartial<Config>) => {
+export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: MaybeRefOrGetter<Partial<Config>>) => {
   
   const {
     as: defaultAs,
@@ -21,7 +21,7 @@ export const useNuxtMarkdown = (source: MaybeRef<string>, config?: MaybeRefParti
     vueRuntimeCompiler,
   } = useRuntimeConfig().public.nuxtMarkdownRender
 
-  const configDef = defu<MaybeRefPartial<Config>, Config[]>(config, {
+  const configDef = defu(config, {
     as: defaultAs,
     options: defaultOptions,
     components: {},

@@ -14,7 +14,3 @@ export interface Config {
 
 export type MarkdownItOptions = MarkdownItOptions
 export type PluginSimple = PluginSimple
-
-export type MaybeRefPartial<T> = {
-  [P in keyof T]?: T[P] | Ref<T[P]>
-}
