@@ -1,6 +1,6 @@
 import MarkdownIt from 'markdown-it'
 import { compile, computed, h, ref, toValue } from 'vue'
-import type { Ref, MaybeRef } from 'vue'
+import type { MaybeRef } from 'vue'
 import { defu } from 'defu'
 import { useRuntimeConfig } from '#imports'
 import type { Config, MaybeRefPartial } from '../types'
@@ -29,7 +29,7 @@ export const useNuxtMarkdown = (source: MaybeRef<string>, config?: MaybeRefParti
     forceHtml: false
   })
 
-  const md = ref<MarkdownIt>(new MarkdownIt(configDef.options)) as Ref<MarkdownIt> // assertion required to prevent TS2742
+  const md = ref<MarkdownIt>(new MarkdownIt(configDef.options))
 
   for (const plugin of configDef.plugins) {
     md.value.use(plugin)
