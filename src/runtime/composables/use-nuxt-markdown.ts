@@ -3,7 +3,7 @@ import { compile, computed, h, ref, toValue } from 'vue'
 import type { Ref, MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
 import { useRuntimeConfig } from '#imports'
-import type { Config } from '../types'
+import type { Config, DeepMROG } from '../types'
 
 /**
  * A composable that accepts a markdown string and returns the rendered HTML.
@@ -13,7 +13,7 @@ import type { Config } from '../types'
  * 
  * @returns an object with rendered content, rendered HTML and current configs.
  */
-export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: MaybeRefOrGetter<Config>) => {
+export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: DeepMROG<Config>) => {
   
   const {
     as: defaultAs,
@@ -21,7 +21,7 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: Maybe
     vueRuntimeCompiler,
   } = useRuntimeConfig().public.nuxtMarkdownRender
 
-  const configDef = defu(config, {
+  const configDef = defu<Config, Config[]>(config, {
     as: defaultAs,
     options: defaultOptions,
     components: {},
@@ -48,11 +48,15 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: Maybe
     }
   }
 
-  return {
-    config: {
+  const currentConfigs = computed(() => {
+    return {
       ...configDef,
       vueRuntimeCompiler
-    },
+    }
+  })
+
+  return {
+    config: currentConfigs,
     content,
     md,
     rendered
