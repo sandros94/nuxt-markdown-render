@@ -29,7 +29,7 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: Maybe
     forceHtml: false
   })
 
-  const md = ref<MarkdownIt>(new MarkdownIt(configDef.options)) as Ref<MarkdownIt> // assertion required to prevent TS2742 at build time
+  const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options))
 
   for (const plugin of configDef.plugins) {
     md.value.use(plugin)
