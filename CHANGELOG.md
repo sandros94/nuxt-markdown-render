@@ -1,6 +1,35 @@
 # Changelog
 
 
+## v1.6.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.5.1...v1.6.0)
+
+### 🚀 Enhancements
+
+- Support getters and simplified types ([bc659a4](https://github.com/sandros94/nuxt-markdown-render/commit/bc659a4))
+
+### 🩹 Fixes
+
+- Remove type assertion ([360d410](https://github.com/sandros94/nuxt-markdown-render/commit/360d410))
+- Group config exports from composable ([0c7c510](https://github.com/sandros94/nuxt-markdown-render/commit/0c7c510))
+- Remove type assertion" ([59d02e2](https://github.com/sandros94/nuxt-markdown-render/commit/59d02e2))
+- Make configs optional by default ([67537cf](https://github.com/sandros94/nuxt-markdown-render/commit/67537cf))
+- Stop using type assertions ([a4e454a](https://github.com/sandros94/nuxt-markdown-render/commit/a4e454a))
+- More types and build issues ([166e47f](https://github.com/sandros94/nuxt-markdown-render/commit/166e47f))
+
+### 📖 Documentation
+
+- Describe composable returns ([c6037bd](https://github.com/sandros94/nuxt-markdown-render/commit/c6037bd))
+
+### 🏡 Chore
+
+- **release:** V1.5.1 ([dce3f1a](https://github.com/sandros94/nuxt-markdown-render/commit/dce3f1a))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.5.1
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.5.0...v1.5.1)
