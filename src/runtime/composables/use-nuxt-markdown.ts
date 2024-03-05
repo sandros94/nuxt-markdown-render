@@ -41,10 +41,12 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: DeepM
     if (toValue(configDef.forceHtml) || !vueRuntimeCompiler) {
       return h(configDef.as, { innerHTML: content.value, })
     } else {
-      return h({
-        components: toValue(configDef.components),
-        render: compile(content.value),
-      })
+      return h(configDef.as, [
+        h({
+          components: toValue(configDef.components),
+          render: compile(content.value),
+        })
+      ])
     }
   }
 
