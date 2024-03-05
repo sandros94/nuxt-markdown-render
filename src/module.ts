@@ -58,7 +58,7 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
 
-    nuxt.options.runtimeConfig.public.nuxtMarkdownRender = defu(
+    const nuxtMarkdownOptions = nuxt.options.runtimeConfig.public.nuxtMarkdownRender = defu(
       nuxt.options.runtimeConfig.public.nuxtMarkdownRender,
       {
         as: options.as,
@@ -69,21 +69,21 @@ export default defineNuxtModule<ModuleOptions>({
       }
     )
 
-    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.vueRuntimeCompiler)
+    if (nuxtMarkdownOptions.vueRuntimeCompiler)
       nuxt.options.vue.runtimeCompiler = true
 
-    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composable !== false)
+    if (nuxtMarkdownOptions.composable !== false)
       addImports({
-        as : nuxt.options.runtimeConfig.public.nuxtMarkdownRender.composable,
+        as : nuxtMarkdownOptions.composable,
         from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown'),
         name: 'useNuxtMarkdown'
       })
     
-    if (nuxt.options.runtimeConfig.public.nuxtMarkdownRender.component !== false)
+    if (nuxtMarkdownOptions.component !== false)
       addComponent({
         filePath: resolve(runtimeDir, 'components', 'nuxt-markdown'),
         global: options.global,
-        name: nuxt.options.runtimeConfig.public.nuxtMarkdownRender.component
+        name: nuxtMarkdownOptions.component
       })
   }
 })
