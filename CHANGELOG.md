@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.6.1
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.6.0...v1.6.1)
+
+### 🩹 Fixes
+
+- Components reactivity ([6454893](https://github.com/sandros94/nuxt-markdown-render/commit/6454893))
+
+### 🏡 Chore
+
+- Simplify module variables ([8143f69](https://github.com/sandros94/nuxt-markdown-render/commit/8143f69))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.6.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.5.1...v1.6.0)
