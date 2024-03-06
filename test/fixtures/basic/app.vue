@@ -1,12 +1,14 @@
 <template>
   <div>
-    <NuxtMarkdown :source="md" />
+    <NuxtMarkdown :source="md" :components="{ TestComponent }" />
   </div>
 </template>
 
 <script setup>
-const md = `
-# Markdown!
+import { TestComponent } from '#components'
+const md = `# Nuxt module playground!
 
-This is a markdown example.`
+Welcome to the example of <a href="https://github.com/sandros94/nuxt-markdown-render" target="_blank">nuxt-markdown-render</a>.
+
+<TestComponent/>`
 </script>
