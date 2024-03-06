@@ -18,6 +18,7 @@ Much inspired by [vue-markdown-render](https://github.com/cloudacy/vue-markdown-
 
 <!-- Highlight some of the features your module provide here -->
 - ✨ &nbsp;Ease of use
+- 🔋 &nbsp;Battery included ([mdc](https://github.com/antfu/markdown-it-mdc), [shiki](https://github.com/antfu/markdown-it-mdc), [anchor](https://github.com/valeriangalliat/markdown-it-anchor), [link-attrbs](https://github.com/crookedneighbor/markdown-it-link-attributes), [GitHub Alerts](https://github.com/antfu/markdown-it-github-alerts))
 - 🧩 &nbsp;Extensible via markdown-it plugins
 - 🎨 &nbsp;Customizable (both via `runtimeConfig` as well as via `props`)
 - 📘 &nbsp;TypeScript support
@@ -27,18 +28,24 @@ Much inspired by [vue-markdown-render](https://github.com/cloudacy/vue-markdown-
 ```vue
 <template>
   <div>
-    <NuxtMarkdown :source="md" />
+    <NuxtMarkdown :source="md" :components="{ MyComponent }" />
   </div>
 </template>
 
 <script setup>
+import { MyComponent } from '#components'
+
 const md = `
 # Hello Nuxt!
 
-Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nuxt-markdown-render).`
+Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nuxt-markdown-render).
+
+:MyComponent`
 </script>
 
 ```
+
+checkout the [MDC (Markdown Components)](https://content.nuxt.com/usage/markdown) documentation on how to use components within markdown files.
 
 ## Quick Setup
 
@@ -63,7 +70,7 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
     })
     ```
 
-3. Customize your defaults via `nuxtMarkdownRender` inside your `nuxt.config.ts`
+3. (**OPTIONAL**) Customize your defaults via `nuxtMarkdownRender` inside your `nuxt.config.ts`
     ```ts
     export default defineNuxtConfig({
       modules: [
@@ -71,43 +78,61 @@ Welcome to the example of [nuxt-markdown-render](https://github.com/sandros94/nu
       ],
     
       nuxtMarkdownRender: {
-        as: 'article',
+        as: 'article', // default 'div'
         component: 'NotNuxtMarkdown', // false to disable Nuxt's auto import
         options: {
-          html: true
+          html: false // default true
         },
-        global: true
+        plugins: {
+          mdc: false // default mdc options object
+        }
+        vueRuntimeCompiler: false // default true
       }
     })
     ```
     This will configure the following:
     - render them as [`article`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article) HTML tags.
     - change the component name to `NotNuxtMarkdown`.
-    - enable [HTML tags in source](https://markdown-it.github.io/markdown-it/#MarkdownIt.new).
-    - mark the `NuxtMarkdown` component as [`global`](https://nuxt.com/docs/guide/directory-structure/components#dynamic-components).
+    - disable [HTML tags in source](https://markdown-it.github.io/markdown-it/#MarkdownIt.new).
+    - disable the builit-in [mdc](https://github.com/antfu/markdown-it-mdc) plugin.
+    - disable vue's [`runtimeCompiler`](https://nuxt.com/docs/api/nuxt-config#runtimecompiler).
 
-### Using Plugins
+## Using Plugins
 
-In order to use markdown-it plugins you have to create your own `NuxtMarkdown` component, here a short introduction on how to do it:
+There are two main ways to use `markdown-it` plugins, the first is made for simple plugins, passed as an array to the `NuxtMarkdown` component's props. The second is to create your own `NuxtMarkdown` component of advanced use cases.
 
-1. Based on the desired plugin be sure to have the right options for this module inside your `nuxt.config.ts`:
+### Basic plugins
+Simply import them and pass them as an array for the `plugins` prop.
+```vue
+<template>
+  <div>
+    <NuxtMarkdown :source="md" :plugins="[emoji]" />
+  </div>
+</template>
+
+<script setup>
+import { full as emoji } from 'markdown-it-emoji'
+
+const md = `my markdown content`
+</script>
+```
+
+### Advanced Plugins
+Some plugins, such asynchronous ones, do require to be handled directly by `useNuxtMarkdown` composable. This requires you to completelly overriding the `NuxtMarkdown` component with your own custom one.
+
+1. start by disabling the builtin `NuxtMarkdown` component from `nuxt.config.ts`:
     ```ts
     export default defineNuxtConfig({
       modules: [
         'nuxt-markdown-render'
       ],
       nuxtMarkdownRender: {
-        options: {
-          html: true,
-          linkify: true,
-          xhtmlOut: true,
-        },
-        vueRuntimeCompiler: true // enable this if a plugin needs to render vue components
-      }
+        component: false
+      },
     })
     ```
 
-2. Create a `~/components/NuxtMarkdown.vue` component to override the default one, with the following structure (substitute plugins with the desired ones):
+2. Create your own `~/components/NuxtMarkdown.vue`, with the following structure (substitute plugins with the desired ones):
     ```vue
     <template>
       <NuxtMarkdown />
@@ -119,7 +144,7 @@ In order to use markdown-it plugins you have to create your own `NuxtMarkdown` c
     import shiki from '@shikijs/markdown-it'
     import mdcPlugin from 'markdown-it-mdc'
 
-    // You could either use global components or manually import them here
+    // Import your other components
     import { Alert, Grid } from '#components'
 
     const props = defineProps({
