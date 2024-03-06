@@ -18,7 +18,7 @@ Much inspired by [vue-markdown-render](https://github.com/cloudacy/vue-markdown-
 
 <!-- Highlight some of the features your module provide here -->
 - ✨ &nbsp;Ease of use
-- 🔋 &nbsp;Battery included ([mdc](https://github.com/antfu/markdown-it-mdc), [shiki](https://github.com/antfu/markdown-it-mdc), [anchor](https://github.com/valeriangalliat/markdown-it-anchor), [link-attrbs](https://github.com/crookedneighbor/markdown-it-link-attributes), [GitHub Alerts](https://github.com/antfu/markdown-it-github-alerts))
+- 🔋 &nbsp;Battery included ([mdc](https://github.com/antfu/markdown-it-mdc), [shiki](https://github.com/shikijs/shiki), [anchor](https://github.com/valeriangalliat/markdown-it-anchor), [link-attrbs](https://github.com/crookedneighbor/markdown-it-link-attributes), [GitHub Alerts](https://github.com/antfu/markdown-it-github-alerts))
 - 🧩 &nbsp;Extensible via markdown-it plugins
 - 🎨 &nbsp;Customizable (both via `runtimeConfig` as well as via `props`)
 - 📘 &nbsp;TypeScript support
