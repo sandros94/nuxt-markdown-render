@@ -85,6 +85,9 @@ checkout the [MDC (Markdown Components)](https://content.nuxt.com/usage/markdown
         },
         plugins: {
           mdc: false // default mdc options object
+          anchor: {
+            level: 2 // default 1
+          }
         }
         vueRuntimeCompiler: false // default true
       }
