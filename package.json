@@ -1,6 +1,6 @@
 {
   "name": "nuxt-markdown-render",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "A simple, lightweight markdown-it wrapper for Nuxt written in pure typescript.",
   "keywords": [
     "nuxt",

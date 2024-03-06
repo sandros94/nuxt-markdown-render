@@ -1,6 +1,34 @@
 # Changelog
 
 
+## v1.7.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.6.1...v1.7.0)
+
+### 🚀 Enhancements
+
+- Deafult plugins closes #4 ([#4](https://github.com/sandros94/nuxt-markdown-render/issues/4))
+
+### 🩹 Fixes
+
+- Wrapper element when using runtimeCompiler ([75d3455](https://github.com/sandros94/nuxt-markdown-render/commit/75d3455))
+- Set required default options ([62daf1d](https://github.com/sandros94/nuxt-markdown-render/commit/62daf1d))
+- Remove table-of-content plugin ([11cbdf4](https://github.com/sandros94/nuxt-markdown-render/commit/11cbdf4))
+
+### 📖 Documentation
+
+- Update readme ([980401a](https://github.com/sandros94/nuxt-markdown-render/commit/980401a))
+
+### 🏡 Chore
+
+- **release:** V1.6.1 ([b577357](https://github.com/sandros94/nuxt-markdown-render/commit/b577357))
+- Update playground ([2a7b24e](https://github.com/sandros94/nuxt-markdown-render/commit/2a7b24e))
+- Update tests ([5260cc2](https://github.com/sandros94/nuxt-markdown-render/commit/5260cc2))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.6.1
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.6.0...v1.6.1)
