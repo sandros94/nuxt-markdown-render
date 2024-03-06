@@ -5,6 +5,9 @@ import {
   createResolver
 } from '@nuxt/kit'
 import type { Options as MarkdownItOptions } from 'markdown-it'
+import type { MarkdownItMdcOptions } from 'markdown-it-mdc'
+import type { MarkdownItGitHubAlertsOptions } from 'markdown-it-github-alerts'
+import type { MarkdownItShikiOptions } from '@shikijs/markdown-it'
 import defu from 'defu'
 import { fileURLToPath } from 'url'
 
@@ -15,7 +18,6 @@ export interface ModuleOptions {
    * @default 'div'
    */
   as: string
-  options: MarkdownItOptions
   /**
    * Component's default name.
    * 
@@ -31,10 +33,29 @@ export interface ModuleOptions {
   /**
    * @default false
    */
-  global?: boolean | 'sync'
+  global: boolean | 'sync'
+  options: MarkdownItOptions
+  plugins: {
+    githubAlerts: false | MarkdownItGitHubAlertsOptions
+    mdc: false | MarkdownItMdcOptions
+    shiki: false | MarkdownItShikiOptions
+    anchor: false | {
+      level?: number | number[]
+      uniqueSlugStartIndex?: number
+      tabIndex?: number | false
+    }
+    toc: false | {
+      includeLevel?: number[]
+      containerClass?: string
+      markerPattern?: RegExp
+      listType?: 'ol' | 'ul'
+      containerHeaderHtml?: string
+      containerFooterHtml?: string
+    }
+  }
   /**
    * Enable vue runtime compiler. Required to render components via plugins such markdown-it-mdc.
-   * @default false
+   * @default true
    */
   vueRuntimeCompiler: boolean
 }
@@ -49,10 +70,23 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: {
     as: 'div',
-    options: {},
     component: 'NuxtMarkdown',
     composable: 'useNuxtMarkdown',
-    vueRuntimeCompiler: false
+    global: false,
+    options: {},
+    plugins: {
+      githubAlerts: {},
+      mdc: {},
+      shiki: {
+        themes: {
+          light: 'github-light',
+          dark: 'github-dark'
+        }
+      },
+      anchor: {},
+      toc: {}
+    },
+    vueRuntimeCompiler: true
   },
   setup (options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
@@ -62,9 +96,17 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.runtimeConfig.public.nuxtMarkdownRender,
       {
         as: options.as,
-        options: options.options,
         component: options.component,
         composable: options.composable,
+        global: options.global,
+        options: options.options,
+        plugins: {
+          githubAlerts: options.plugins.githubAlerts,
+          mdc: options.plugins.mdc,
+          shiki: options.plugins.shiki,
+          anchor: options.plugins.anchor,
+          toc: options.plugins.toc
+        },
         vueRuntimeCompiler: options.vueRuntimeCompiler
       }
     )
