@@ -73,7 +73,11 @@ export default defineNuxtModule<ModuleOptions>({
     component: 'NuxtMarkdown',
     composable: 'useNuxtMarkdown',
     global: false,
-    options: {},
+    options: {
+      html: true,
+      linkify: true,
+      xhtmlOut: true,
+    },
     plugins: {
       githubAlerts: {},
       mdc: {},
