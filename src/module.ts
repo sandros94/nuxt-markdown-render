@@ -44,14 +44,6 @@ export interface ModuleOptions {
       uniqueSlugStartIndex?: number
       tabIndex?: number | false
     }
-    toc: false | {
-      includeLevel?: number[]
-      containerClass?: string
-      markerPattern?: RegExp
-      listType?: 'ol' | 'ul'
-      containerHeaderHtml?: string
-      containerFooterHtml?: string
-    }
   }
   /**
    * Enable vue runtime compiler. Required to render components via plugins such markdown-it-mdc.
@@ -87,8 +79,7 @@ export default defineNuxtModule<ModuleOptions>({
           dark: 'github-dark'
         }
       },
-      anchor: {},
-      toc: {}
+      anchor: {}
     },
     vueRuntimeCompiler: true
   },
@@ -108,8 +99,7 @@ export default defineNuxtModule<ModuleOptions>({
           githubAlerts: options.plugins.githubAlerts,
           mdc: options.plugins.mdc,
           shiki: options.plugins.shiki,
-          anchor: options.plugins.anchor,
-          toc: options.plugins.toc
+          anchor: options.plugins.anchor
         },
         vueRuntimeCompiler: options.vueRuntimeCompiler
       }

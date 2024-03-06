@@ -17,16 +17,13 @@ import MarkdownItGitHubAlerts from 'markdown-it-github-alerts'
 import mdcPlugin from 'markdown-it-mdc'
 import shiki from '@shikijs/markdown-it'
 import anchor from 'markdown-it-anchor'
-// @ts-expect-error missing types
-import toc from 'markdown-it-table-of-contents'
 
 const {
     plugins: {
       githubAlerts: githubAlertsOptions,
       mdc: mdcOptions,
       shiki: shikiOptions,
-      anchor: anchorOptions,
-      toc: tocOptions
+      anchor: anchorOptions
     }
   } = useRuntimeConfig().public.nuxtMarkdownRender as ModuleOptions
 
@@ -90,6 +87,4 @@ if (shikiOptions !== false)
   md.value.use(await shiki(shikiOptions))
 if (anchorOptions !== false)
   md.value.use(anchor, anchorOptions)
-if (tocOptions !== false)
-  md.value.use(toc, tocOptions)
 </script>
