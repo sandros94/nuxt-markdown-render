@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v1.7.1
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.0...v1.7.1)
+
+### 📖 Documentation
+
+- Show custom options for pugins ([bb9aa27](https://github.com/sandros94/nuxt-markdown-render/commit/bb9aa27))
+
+### 🏡 Chore
+
+- **release:** V1.7.0 ([c663e1d](https://github.com/sandros94/nuxt-markdown-render/commit/c663e1d))
+- Stop eslint from checking json files ([f70e678](https://github.com/sandros94/nuxt-markdown-render/commit/f70e678))
+- Update playground ([1d315b7](https://github.com/sandros94/nuxt-markdown-render/commit/1d315b7))
+- Update packages ([b51f71d](https://github.com/sandros94/nuxt-markdown-render/commit/b51f71d))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.7.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.6.1...v1.7.0)
