@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { TestComponent } from '#components'
+import { NuxtMarkdown, TestComponent } from '#components'
 const md = ref(`# Nuxt module playground!
 
 Welcome to the example of <a href="https://github.com/sandros94/nuxt-markdown-render" target="_blank">nuxt-markdown-render</a>.
