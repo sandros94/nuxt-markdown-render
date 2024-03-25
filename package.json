@@ -45,9 +45,9 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.9.1",
-    "@shikijs/markdown-it": "^1.1.7",
-    "markdown-it": "^14.0.0",
+    "@nuxt/kit": "^3.11.1",
+    "@shikijs/markdown-it": "^1.2.0",
+    "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-github-alerts": "^0.3.0",
     "markdown-it-mdc": "^0.2.3",
@@ -57,13 +57,13 @@
     "@nuxt/devtools": "latest",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxt/module-builder": "^0.5.5",
-    "@nuxt/schema": "^3.9.1",
-    "@nuxt/test-utils": "^3.9.0",
+    "@nuxt/schema": "^3.11.1",
+    "@nuxt/test-utils": "^3.12.0",
     "@types/markdown-it": "^13.0.7",
-    "@types/node": "^20.11.0",
+    "@types/node": "^20.11.30",
     "changelogen": "^0.5.5",
-    "eslint": "^8.56.0",
-    "nuxt": "^3.9.1",
-    "vitest": "^1.0.0"
+    "eslint": "^8.57.0",
+    "nuxt": "^3.11.1",
+    "vitest": "^1.4.0"
   }
 }
