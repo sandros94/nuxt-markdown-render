@@ -65,5 +65,10 @@
     "eslint": "^8.57.0",
     "nuxt": "^3.11.1",
     "vitest": "^1.4.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "uc.micro": "2.0.0"
+    }
   }
 }
