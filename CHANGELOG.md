@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.7.2
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.1...v1.7.2)
+
+### 🩹 Fixes
+
+- Lock `uc.micro@2.0.0` #8 ([#8](https://github.com/sandros94/nuxt-markdown-render/issues/8))
+
+### 🏡 Chore
+
+- **release:** V1.7.1 ([fbbc65f](https://github.com/sandros94/nuxt-markdown-render/commit/fbbc65f))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.7.1
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.0...v1.7.1)
