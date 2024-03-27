@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v1.7.3
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.2...v1.7.3)
+
+### 🩹 Fixes
+
+- Plugins configs being optional ([96266b4](https://github.com/sandros94/nuxt-markdown-render/commit/96266b4))
+
+### 🏡 Chore
+
+- **release:** V1.7.2 ([2c47ab1](https://github.com/sandros94/nuxt-markdown-render/commit/2c47ab1))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.7.2
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.1...v1.7.2)
