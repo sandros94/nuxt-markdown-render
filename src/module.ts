@@ -36,10 +36,10 @@ export interface ModuleOptions {
   global: boolean | 'sync'
   options: MarkdownItOptions
   plugins: {
-    githubAlerts: false | MarkdownItGitHubAlertsOptions
-    mdc: false | MarkdownItMdcOptions
-    shiki: false | MarkdownItShikiOptions
-    anchor: false | {
+    githubAlerts?: false | MarkdownItGitHubAlertsOptions
+    mdc?: false | MarkdownItMdcOptions
+    shiki?: false | MarkdownItShikiOptions
+    anchor?: false | {
       level?: number | number[]
       uniqueSlugStartIndex?: number
       tabIndex?: number | false
@@ -87,7 +87,10 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
 
-    const nuxtMarkdownOptions = nuxt.options.runtimeConfig.public.nuxtMarkdownRender = defu(
+    const nuxtMarkdownOptions = nuxt.options.runtimeConfig.public.nuxtMarkdownRender = defu<
+      ModuleOptions,
+      ModuleOptions[]
+    >(
       nuxt.options.runtimeConfig.public.nuxtMarkdownRender,
       {
         as: options.as,
