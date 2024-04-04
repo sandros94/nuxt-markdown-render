@@ -2,6 +2,7 @@ import {
   defineNuxtModule,
   addComponent,
   addImports,
+  addPlugin,
   createResolver
 } from '@nuxt/kit'
 import type { Options as MarkdownItOptions } from 'markdown-it'
@@ -110,6 +111,10 @@ export default defineNuxtModule<ModuleOptions>({
 
     if (nuxtMarkdownOptions.vueRuntimeCompiler)
       nuxt.options.vue.runtimeCompiler = true
+
+    addPlugin({
+      src: resolve(runtimeDir, 'plugins', 'nuxt-markdown'),
+    })
 
     if (nuxtMarkdownOptions.composable !== false)
       addImports({

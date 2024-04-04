@@ -2,7 +2,7 @@ import MarkdownIt from 'markdown-it'
 import { compile, computed, h, ref, toValue } from 'vue'
 import type { Ref, MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
-import { useRuntimeConfig } from '#imports'
+import { useRuntimeConfig, useNuxtApp } from '#imports'
 import type { Config, DeepMROG } from '../types'
 
 /**
@@ -11,10 +11,17 @@ import type { Config, DeepMROG } from '../types'
  * @param source required
  * @param config optional
  * 
- * @returns an object with rendered content, rendered HTML and current configs.
+ * @returns an object with the following properties:
+ * - `config`: the current configuration
+ * - `content`: the rendered markdown content
+ * - `$md`: a globally available markdown-it instance
+ * - `md`: a blank markdown-it instance
+ * - `rendered`: the rendered Vnode
  */
 export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: DeepMROG<Config>) => {
-  
+
+  const { $md } = useNuxtApp()
+
   const {
     as: defaultAs,
     options: defaultOptions,
@@ -32,10 +39,10 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: DeepM
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options))
 
   for (const plugin of configDef.plugins) {
-    md.value.use(plugin)
+    $md.value.use(plugin)
   }
 
-  const content = computed(() => md.value.render(toValue(source)))
+  const content = computed(() => $md.value.render(toValue(source)))
 
   const rendered = () => {
     if (toValue(configDef.forceHtml) || !vueRuntimeCompiler) {
@@ -60,6 +67,7 @@ export const useNuxtMarkdown = (source: MaybeRefOrGetter<string>, config?: DeepM
   return {
     config: currentConfigs,
     content,
+    $md,
     md,
     rendered
   }
