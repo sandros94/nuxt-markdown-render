@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.8.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.3...v1.8.0)
+
+### 🚀 Enhancements
+
+- Markdown-it as nuxt plugin fixes #9 ([#9](https://github.com/sandros94/nuxt-markdown-render/issues/9))
+
+### 🩹 Fixes
+
+- ShikiOptions check if not defined ([4a1ebaf](https://github.com/sandros94/nuxt-markdown-render/commit/4a1ebaf))
+
+### 🏡 Chore
+
+- **release:** V1.7.3 ([872d4cd](https://github.com/sandros94/nuxt-markdown-render/commit/872d4cd))
+- Add preview script for playground ([d2596de](https://github.com/sandros94/nuxt-markdown-render/commit/d2596de))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.7.3
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.2...v1.7.3)
