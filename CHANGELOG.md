@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v1.10.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.9.0...v1.10.0)
+
+### 🚀 Enhancements
+
+- Set breaks to true by default ([26795ed](https://github.com/sandros94/nuxt-markdown-render/commit/26795ed))
+- Use `NuxtLink` for navigation by default ([1dacf09](https://github.com/sandros94/nuxt-markdown-render/commit/1dacf09))
+- Support global components ([125c0b7](https://github.com/sandros94/nuxt-markdown-render/commit/125c0b7))
+
+### 🩹 Fixes
+
+- Components as optional and make not reactive ([2323094](https://github.com/sandros94/nuxt-markdown-render/commit/2323094))
+
+### 🏡 Chore
+
+- Refactor code and remove leftovers ([14ae0c9](https://github.com/sandros94/nuxt-markdown-render/commit/14ae0c9))
+
+### ✅ Tests
+
+- Add global component test ([b242d65](https://github.com/sandros94/nuxt-markdown-render/commit/b242d65))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.9.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.8.0...v1.9.0)
