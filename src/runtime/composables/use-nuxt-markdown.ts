@@ -4,6 +4,7 @@ import type { Ref, MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
 import { useRuntimeConfig, useNuxtApp } from '#imports'
 import type { Config, DeepMROG } from '../types'
+import { NuxtLink } from '#components'
 
 /**
  * The main composable to access or customize md, renderer and content.
@@ -33,6 +34,7 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
 
   const {
     as: defaultAs,
+    useNuxtLink,
     vueRuntimeCompiler,
   } = useRuntimeConfig().public.nuxtMarkdownRender
 
@@ -45,10 +47,28 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     new: false,
     options: undefined,
     plugins: undefined,
+    useNuxtLink
   })
 
   // TODO: Add support to optionally inherit from nuxt config
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options ?? {}))
+
+  if (useNuxtLink && vueRuntimeCompiler) {
+    md.value.renderer.rules.link_open = function (tokens, idx, options, env, slf) {
+      const token = tokens[idx]
+      token.attrs = token.attrs && token.attrs.map(attr => {
+        if (attr[0] === 'href') attr[0] = 'to'
+        return attr
+      })
+      return '<NuxtLink' + slf.renderAttrs(token) + '>'
+    }
+    md.value.renderer.rules.link_close = function () { return '</NuxtLink>' }
+
+    configDef.components = {
+      ...configDef.components,
+      NuxtLink
+    }
+  }
 
   if (configDef.enable) {
     md.value.enable(configDef.enable, true)

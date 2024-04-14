@@ -18,10 +18,23 @@ export default defineNuxtPlugin(async nuxtApp => {
       shiki,
       anchor
     },
+    useNuxtLink,
     vueRuntimeCompiler
   } = nuxtApp.$config.public.nuxtMarkdownRender as ModuleOptions
 
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(options))
+
+  if (useNuxtLink && vueRuntimeCompiler) {
+    md.value.renderer.rules.link_open = function (tokens, idx, options, env, slf) {
+      const token = tokens[idx]
+      token.attrs = token.attrs && token.attrs.map(attr => {
+        if (attr[0] === 'href') attr[0] = 'to'
+        return attr
+      })
+      return '<NuxtLink' + slf.renderAttrs(token) + '>'
+    }
+    md.value.renderer.rules.link_close = function () { return '</NuxtLink>' }
+  }
 
   if (enable) {
     md.value.enable(enable, true)

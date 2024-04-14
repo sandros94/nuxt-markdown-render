@@ -61,6 +61,12 @@ export interface ModuleOptions {
     }
   }
   /**
+   * Use NuxtLink component for links.
+   * 
+   * @default true
+   */
+  useNuxtLink: boolean
+  /**
    * Enable vue runtime compiler. Required to render components via plugins such markdown-it-mdc.
    * @default true
    */
@@ -99,6 +105,7 @@ export default defineNuxtModule<ModuleOptions>({
       },
       anchor: {}
     },
+    useNuxtLink: true,
     vueRuntimeCompiler: true
   },
   setup (options, nuxt) {
@@ -122,6 +129,7 @@ export default defineNuxtModule<ModuleOptions>({
           shiki: options.plugins.shiki,
           anchor: options.plugins.anchor
         },
+        useNuxtLink: options.useNuxtLink,
         vueRuntimeCompiler: options.vueRuntimeCompiler
       }
     )

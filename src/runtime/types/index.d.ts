@@ -13,6 +13,7 @@ export interface Config {
   new: boolean
   options?: MarkdownItOptions
   plugins?: PluginSimple[]
+  useNuxtLink: boolean
 }
 
 export type MarkdownItOptions = MarkdownItOptions
