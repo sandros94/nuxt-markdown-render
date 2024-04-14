@@ -187,10 +187,11 @@ The following are the available exports for `useNuxtMarkdown` composable.
 
 ```ts
 const {
-  config,    // configs in use, currently for debuging purposes
-  content,   // rendered content from markdown-it
-  md,        // main parser/renderer
-  rendered,  // rendered vue component based on `content`
+  config,     // configs in use, currently for debuging purposes
+  content,    // rendered content from markdown-it
+  $md,        // a globally available markdown-it instance (via Nuxt plugin)
+  md,         // a blank markdown-it instance, usefull for one time renders
+  rendered,   // rendered vue component based on `content`
 } = useNuxtMarkdown(source, configs)
 ```
 
