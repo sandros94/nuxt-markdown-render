@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v1.9.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.8.0...v1.9.0)
+
+### 🚀 Enhancements
+
+- Optionally disable and enable rules fixes #10 ([#10](https://github.com/sandros94/nuxt-markdown-render/issues/10))
+- Dynamically use a new md istance when required ([f88bad1](https://github.com/sandros94/nuxt-markdown-render/commit/f88bad1))
+
+### 💅 Refactors
+
+- Composable param and make it optional ([96a5ba7](https://github.com/sandros94/nuxt-markdown-render/commit/96a5ba7))
+
+### 📖 Documentation
+
+- Fix available exports for `useNuxtMarkdown` composable ([2b17d4b](https://github.com/sandros94/nuxt-markdown-render/commit/2b17d4b))
+
+### 🏡 Chore
+
+- **revert:** To `markdown-it@14.0.0` till #8 is fixed ([#8](https://github.com/sandros94/nuxt-markdown-render/issues/8))
+
+### ✅ Tests
+
+- Move to nuxt page ([5d253a4](https://github.com/sandros94/nuxt-markdown-render/commit/5d253a4))
+- Add blank test ([a07db0d](https://github.com/sandros94/nuxt-markdown-render/commit/a07db0d))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.8.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.7.3...v1.8.0)
