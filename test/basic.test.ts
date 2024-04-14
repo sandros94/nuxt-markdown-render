@@ -10,7 +10,7 @@ describe('ssr', async () => {
   it('renders markdown content', async () => {
     // Get response to a server-rendered page with `$fetch`.
     const html = await $fetch('/')
-    expect(html).toContain('<h1 id="nuxt-module-playground!" tabindex="-1">Nuxt module playground!</h1><p>Welcome to the example of <a href="https://github.com/sandros94/nuxt-markdown-render" target="_blank">nuxt-markdown-render</a>.</p><div><h1>Test component</h1></div>')
+    expect(html).toContain('<h1 id="nuxt-module-playground!" tabindex="-1">Nuxt module playground!</h1><p>Welcome to the example of <a href="https://github.com/sandros94/nuxt-markdown-render" target="_blank">nuxt-markdown-render</a>.</p><div><h1>Test component</h1></div><div><h1>Test Global component</h1></div>')
   })
 
   it('without html', async () => {
