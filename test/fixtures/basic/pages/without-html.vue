@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtMarkdown :source="md" :components="{ TestComponent }" />
+    <NuxtMarkdown :source="md" :components="{ TestComponent }" :options="{ html: false }" />
   </div>
 </template>
 
