@@ -39,7 +39,8 @@ const props = defineProps({
   },
   source: {
     type: String,
-    required: true,
+    required: false,
+    default: undefined,
   },
 })
 
@@ -49,7 +50,8 @@ const {
   source
 }= toRefs(props)
 
-const { rendered: NuxtMarkdown, content, $md } = useNuxtMarkdown(source, {
+const { rendered: NuxtMarkdown, content, $md } = useNuxtMarkdown({
+  source,
   as: props.as,
   components,
   forceHtml,
