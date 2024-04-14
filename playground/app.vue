@@ -4,15 +4,12 @@
       v-model="md"
       @input="autoGrow"
     />
-    <NuxtMarkdown
-      :source="md"
-      :components="{ TestComponent }"
-    />
+    <NuxtMarkdown :source="md" />
   </div>
 </template>
 
 <script setup>
-import { NuxtMarkdown, TestComponent } from '#components'
+import { NuxtMarkdown } from '#components'
 const md = ref(`# Nuxt module playground!
 
 Welcome to the example of <a href="https://github.com/sandros94/nuxt-markdown-render" target="_blank">nuxt-markdown-render</a>.

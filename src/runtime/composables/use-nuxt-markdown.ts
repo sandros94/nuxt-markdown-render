@@ -1,4 +1,4 @@
-import { computed, h, ref, toValue } from 'vue'
+import { computed, h, ref, toValue, getCurrentInstance } from 'vue'
 import type { Ref, MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
 
@@ -39,10 +39,11 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     useNuxtLink,
     vueRuntimeCompiler,
   } = useRuntimeConfig().public.nuxtMarkdownRender
+  const globalComponents = getCurrentInstance()?.appContext.components
 
   const configDef = defu<Config, Config[]>(overridesRest, {
     as: defaultAs,
-    components: {},
+    components: { ...globalComponents },
     disable: undefined,
     enable: undefined,
     forceHtml: false,
