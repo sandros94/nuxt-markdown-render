@@ -14,6 +14,7 @@ import type { Config, DeepMROG } from '../types'
  * - `disable` - The markdown-it rules to disable
  * - `enable` - The markdown-it rules to enable
  * - `forceHtml` - Whether to force HTML rendering
+ * - `new` - Whether to use a blank markdown-it instance
  * - `options` - The markdown-it options
  * - `plugins` - The markdown-it plugins
  * - `source` - The markdown source string
@@ -41,12 +42,13 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     disable: undefined,
     enable: undefined,
     forceHtml: false,
-    options: {},
-    plugins: [],
+    new: false,
+    options: undefined,
+    plugins: undefined,
   })
 
   // TODO: Add support to optionally inherit from nuxt config
-  const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options))
+  const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options ?? {}))
 
   if (configDef.enable) {
     md.value.enable(configDef.enable, true)
@@ -62,7 +64,17 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     }
   }
 
-  const content = computed(() => $md.value.render(toValue(source) ?? ''))
+  // Check if a new istance is required
+  const newRequired = !!(toValue(configDef.new) || configDef.disable || configDef.enable || configDef.plugins || overridesRest.options)
+
+  const content = computed(() => {
+    if (newRequired) {
+      return md.value.render(toValue(source) ?? '')
+    }
+    else {
+      return $md.value.render(toValue(source) ?? '')
+    }
+  })
 
   const rendered = () => {
     if (toValue(configDef.forceHtml) || !vueRuntimeCompiler) {
@@ -89,6 +101,7 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     content,
     $md,
     md,
+    newRequired,
     rendered
   }
 }

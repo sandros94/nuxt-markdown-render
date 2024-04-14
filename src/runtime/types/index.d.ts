@@ -10,8 +10,9 @@ export interface Config {
   forceHtml: boolean
   disable?: string | string[]
   enable?: string | string[]
-  options: MarkdownItOptions
-  plugins: PluginSimple[]
+  new: boolean
+  options?: MarkdownItOptions
+  plugins?: PluginSimple[]
 }
 
 export type MarkdownItOptions = MarkdownItOptions
