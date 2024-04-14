@@ -83,6 +83,7 @@ export default defineNuxtModule<ModuleOptions>({
     enable: undefined,
     global: false,
     options: {
+      breaks: true,
       html: true,
       linkify: true,
       xhtmlOut: true,
