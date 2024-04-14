@@ -1,10 +1,12 @@
-import { defineNuxtPlugin } from '#app'
 import { type Ref, ref } from 'vue'
+
 import MarkdownIt from 'markdown-it'
-import MarkdownItGitHubAlerts from 'markdown-it-github-alerts'
 import mdcPlugin from 'markdown-it-mdc'
+import MarkdownItGitHubAlerts from 'markdown-it-github-alerts'
 import shikiPlugin from '@shikijs/markdown-it'
 import anchorPlugin from 'markdown-it-anchor'
+
+import { defineNuxtPlugin } from '#app'
 import type { ModuleOptions } from '../../module'
 
 export default defineNuxtPlugin(async nuxtApp => {

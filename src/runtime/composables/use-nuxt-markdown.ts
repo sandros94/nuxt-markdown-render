@@ -1,10 +1,12 @@
-import MarkdownIt from 'markdown-it'
-import { compile, computed, h, ref, toValue } from 'vue'
+import { computed, h, ref, toValue } from 'vue'
 import type { Ref, MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
+
+import MarkdownIt from 'markdown-it'
+
 import { useRuntimeConfig, useNuxtApp } from '#imports'
-import type { Config, DeepMROG } from '../types'
 import { NuxtLink } from '#components'
+import type { Config } from '../types'
 
 /**
  * The main composable to access or customize md, renderer and content.
@@ -27,7 +29,7 @@ import { NuxtLink } from '#components'
  * - `md` - a blank markdown-it instance
  * - `rendered` - the rendered Vnode
  */
-export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string | undefined> } & DeepMROG<Config>) => {
+export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string | undefined> } & Partial<Config>) => {
 
   const { source, ...overridesRest } = overrides ?? {}
   const { $md } = useNuxtApp()
@@ -79,13 +81,13 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
   }
 
   if (configDef.plugins) {
-    for (const plugin of toValue(configDef.plugins)) {
+    for (const plugin of configDef.plugins) {
       md.value.use(plugin)
     }
   }
 
   // Check if a new istance is required
-  const newRequired = !!(toValue(configDef.new) || configDef.disable || configDef.enable || configDef.plugins || overridesRest.options)
+  const newRequired = !!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || overridesRest.options)
 
   const content = computed(() => {
     if (newRequired) {
@@ -97,13 +99,13 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
   })
 
   const rendered = () => {
-    if (toValue(configDef.forceHtml) || !vueRuntimeCompiler) {
+    if (configDef.forceHtml || !vueRuntimeCompiler) {
       return h(configDef.as, { innerHTML: content.value, })
     } else {
       return h(configDef.as, [
         h({
-          components: toValue(configDef.components),
-          render: compile(content.value),
+          components: configDef.components,
+          template: content.value,
         })
       ])
     }

@@ -1,4 +1,4 @@
-import type { Component, MaybeRefOrGetter } from 'vue'
+import type { Component } from 'vue'
 import type {
   Options as MarkdownItOptions,
   PluginSimple,
@@ -18,7 +18,3 @@ export interface Config {
 
 export type MarkdownItOptions = MarkdownItOptions
 export type PluginSimple = PluginSimple
-
-export type DeepMROG<T> = T extends object ? {
-  [P in keyof T]?: MaybeRefOrGetter<T[P]>
-} : MaybeRefOrGetter<T>

@@ -16,21 +16,21 @@ interface Props extends Partial<Omit<Config, 'components'>> {
 const props = defineProps<Props>()
 
 const {
-  forceHtml,
   source
 }= toRefs(props)
 
-const { rendered: NuxtMarkdown, content, $md, md, newRequired } = useNuxtMarkdown({
+const { config, content, $md, md, newRequired, rendered: NuxtMarkdown } = useNuxtMarkdown({
   source,
   as: props.as,
   components: props.components,
-  forceHtml,
+  forceHtml: props.forceHtml,
   new: props.new,
   options: props.options,
   plugins: props.plugins,
 })
 
 defineExpose({
+  config,
   content,
   md: newRequired ? md : $md,
   NuxtMarkdown,
