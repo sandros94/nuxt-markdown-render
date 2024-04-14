@@ -32,6 +32,20 @@ export interface ModuleOptions {
    */
   composable: string | false
   /**
+   * The markdown-it rules to disable.
+   * 
+   * @default undefined
+   */
+  disable?: string | string[]
+  /**
+   * The markdown-it rules to disable.
+   * 
+   * @default undefined
+   */
+  enable?: string | string[]
+  /**
+   * Register the component globally.
+   * 
    * @default false
    */
   global: boolean | 'sync'
@@ -65,6 +79,8 @@ export default defineNuxtModule<ModuleOptions>({
     as: 'div',
     component: 'NuxtMarkdown',
     composable: 'useNuxtMarkdown',
+    disable: undefined,
+    enable: undefined,
     global: false,
     options: {
       html: true,

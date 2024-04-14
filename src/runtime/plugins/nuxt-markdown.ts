@@ -9,6 +9,8 @@ import type { ModuleOptions } from '../../module'
 
 export default defineNuxtPlugin(async nuxtApp => {
   const {
+    disable,
+    enable,
     options,
     plugins: {
       githubAlerts,
@@ -20,6 +22,14 @@ export default defineNuxtPlugin(async nuxtApp => {
   } = nuxtApp.$config.public.nuxtMarkdownRender as ModuleOptions
 
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(options))
+
+  if (enable) {
+    md.value.enable(enable, true)
+  }
+
+  if (disable) {
+    md.value.disable(disable, true)
+  }
 
   if (anchor !== false)
     md.value.use(anchorPlugin, anchor)

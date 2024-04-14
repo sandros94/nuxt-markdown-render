@@ -6,10 +6,12 @@ import type {
 
 export interface Config {
   as: string
-  options: MarkdownItOptions
   components: Record<string, Component>
-  plugins: PluginSimple[]
   forceHtml: boolean
+  disable?: string | string[]
+  enable?: string | string[]
+  options: MarkdownItOptions
+  plugins: PluginSimple[]
 }
 
 export type MarkdownItOptions = MarkdownItOptions

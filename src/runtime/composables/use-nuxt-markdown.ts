@@ -11,6 +11,8 @@ import type { Config, DeepMROG } from '../types'
  * @param overrides - An object containing the following properties:
  * - `as` - The HTML tag name for the component
  * - `components` - The components to render
+ * - `disable` - The markdown-it rules to disable
+ * - `enable` - The markdown-it rules to enable
  * - `forceHtml` - Whether to force HTML rendering
  * - `options` - The markdown-it options
  * - `plugins` - The markdown-it plugins
@@ -35,14 +37,24 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
 
   const configDef = defu<Config, Config[]>(overridesRest, {
     as: defaultAs,
-    options: {},
     components: {},
+    disable: undefined,
+    enable: undefined,
+    forceHtml: false,
+    options: {},
     plugins: [],
-    forceHtml: false
   })
 
-  // TODO: Add support to optionally inherit from global config
+  // TODO: Add support to optionally inherit from nuxt config
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options))
+
+  if (configDef.enable) {
+    md.value.enable(configDef.enable, true)
+  }
+
+  if (configDef.disable) {
+    md.value.disable(configDef.disable, true)
+  }
 
   if (configDef.plugins) {
     for (const plugin of toValue(configDef.plugins)) {
