@@ -1,22 +1,18 @@
-import { computed, h, ref, toValue, getCurrentInstance } from 'vue'
+import { computed, ref, toValue } from 'vue'
 import type { Ref, MaybeRefOrGetter } from 'vue'
 import { defu } from 'defu'
 
 import MarkdownIt from 'markdown-it'
 
 import { useRuntimeConfig, useNuxtApp } from '#imports'
-import { NuxtLink } from '#components'
 import type { Config } from '../types'
 
 /**
  * The main composable to access or customize md, renderer and content.
  * 
- * @param overrides - An object containing the following properties:
- * - `as` - The HTML tag name for the component
- * - `components` - The components to render
+ * @param params - An object containing the following properties:
  * - `disable` - The markdown-it rules to disable
  * - `enable` - The markdown-it rules to enable
- * - `forceHtml` - Whether to force HTML rendering
  * - `new` - Whether to use a blank markdown-it instance
  * - `options` - The markdown-it options
  * - `plugins` - The markdown-it plugins
@@ -25,31 +21,24 @@ import type { Config } from '../types'
  * @returns an object with the following properties:
  * - `blank` - whether a new md instance is used
  * - `content` - the rendered markdown content
- * - `$md` - a globally available markdown-it instance
  * - `md` - a blank markdown-it instance
- * - `rendered` - the rendered Vnode
  */
-export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string | undefined> } & Partial<Config>) => {
+export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | undefined> } & Partial<Config>) => {
 
-  const { source, ...overridesRest } = overrides ?? {}
+  const { source, ...paramsRest } = params ?? {}
   const { $md } = useNuxtApp()
 
   const {
-    as: defaultAs,
     plugins: {
       mdc,
     },
     useNuxtLink,
     vueRuntimeCompiler,
   } = useRuntimeConfig().public.nuxtMarkdownRender
-  const globalComponents = getCurrentInstance()?.appContext.components
 
-  const configDef = defu<Config, Config[]>(overridesRest, {
-    as: defaultAs,
-    components: { ...globalComponents },
+  const configDef = defu<Config, Config[]>(paramsRest, {
     disable: undefined,
     enable: undefined,
-    forceHtml: false,
     new: false,
     options: undefined,
     plugins: undefined,
@@ -69,11 +58,6 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
       return '<NuxtLink' + slf.renderAttrs(token) + '>'
     }
     md.value.renderer.rules.link_close = function () { return '</NuxtLink>' }
-
-    configDef.components = {
-      ...configDef.components,
-      NuxtLink
-    }
   }
 
   if (configDef.enable) {
@@ -91,7 +75,7 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
   }
 
   // Check if a new istance is required
-  const newRequired = !!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || overridesRest.options)
+  const newRequired = !!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || paramsRest.options)
 
   const content = computed(() => {
     if (newRequired) {
@@ -102,24 +86,9 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     }
   })
 
-  const rendered = () => {
-    if (configDef.forceHtml || !vueRuntimeCompiler) {
-      return h(configDef.as, { innerHTML: content.value, })
-    } else {
-      return h(configDef.as, [
-        h({
-          components: configDef.components,
-          template: content.value,
-        })
-      ])
-    }
-  }
-
   return {
     blank: newRequired,
     content,
-    $md,
     md,
-    rendered
   }
 }
