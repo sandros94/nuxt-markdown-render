@@ -23,7 +23,7 @@ import type { Config } from '../types'
  * - `source` - The markdown source string
  * 
  * @returns an object with the following properties:
- * - `config` - the current configuration
+ * - `blank` - whether a new md instance is used
  * - `content` - the rendered markdown content
  * - `$md` - a globally available markdown-it instance
  * - `md` - a blank markdown-it instance
@@ -115,19 +115,11 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
     }
   }
 
-  const currentConfigs = computed(() => {
-    return {
-      ...configDef,
-      vueRuntimeCompiler
-    }
-  })
-
   return {
-    config: currentConfigs,
+    blank: newRequired,
     content,
     $md,
     md,
-    newRequired,
     rendered
   }
 }

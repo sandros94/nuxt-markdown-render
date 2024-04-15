@@ -1,10 +1,6 @@
 import { type Ref, ref } from 'vue'
 
 import MarkdownIt from 'markdown-it'
-import mdcPlugin from 'markdown-it-mdc'
-import MarkdownItGitHubAlerts from 'markdown-it-github-alerts'
-import shikiPlugin from '@shikijs/markdown-it'
-import anchorPlugin from 'markdown-it-anchor'
 
 import { defineNuxtPlugin } from '#app'
 import type { ModuleOptions } from '../../module'
@@ -46,15 +42,16 @@ export default defineNuxtPlugin(async nuxtApp => {
     md.value.disable(disable, true)
   }
 
-  if (anchor !== false)
-    md.value.use(anchorPlugin, anchor)
-  if (githubAlerts !== false)
-    md.value.use(MarkdownItGitHubAlerts, githubAlerts)
   if (mdc !== false && vueRuntimeCompiler)
-    md.value.use(mdcPlugin, mdc)
-  if (shiki !== false && shiki !== undefined)
+    md.value.use((await import('markdown-it-mdc')).default, mdc)
+  if (githubAlerts !== false)
+    md.value.use((await import('markdown-it-github-alerts')).default, githubAlerts)
+  if (anchor !== false)
+    md.value.use((await import('markdown-it-anchor')).default, anchor)
+  if (shiki !== false && shiki !== undefined){
+    const shikiPlugin = (await import('@shikijs/markdown-it')).default
     md.value.use(await shikiPlugin(shiki))
-
+  }
   return {
     provide: {
       md

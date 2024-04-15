@@ -19,7 +19,7 @@ const {
   source
 }= toRefs(props)
 
-const { config, content, $md, md, newRequired, rendered: NuxtMarkdown } = useNuxtMarkdown({
+const { content, $md, md, blank, rendered: NuxtMarkdown } = useNuxtMarkdown({
   source,
   as: props.as,
   components: props.components,
@@ -30,9 +30,8 @@ const { config, content, $md, md, newRequired, rendered: NuxtMarkdown } = useNux
 })
 
 defineExpose({
-  config,
   content,
-  md: newRequired ? md : $md,
+  md: blank ? md : $md,
   NuxtMarkdown,
 })
 </script>
