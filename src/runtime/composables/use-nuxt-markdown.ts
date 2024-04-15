@@ -36,6 +36,9 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
 
   const {
     as: defaultAs,
+    plugins: {
+      mdc,
+    },
     useNuxtLink,
     vueRuntimeCompiler,
   } = useRuntimeConfig().public.nuxtMarkdownRender
@@ -56,7 +59,7 @@ export const useNuxtMarkdown = (overrides?: { source?: MaybeRefOrGetter<string |
   // TODO: Add support to optionally inherit from nuxt config
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options ?? {}))
 
-  if (useNuxtLink && vueRuntimeCompiler) {
+  if (mdc !== false && useNuxtLink && vueRuntimeCompiler) {
     md.value.renderer.rules.link_open = function (tokens, idx, options, env, slf) {
       const token = tokens[idx]
       token.attrs = token.attrs && token.attrs.map(attr => {
