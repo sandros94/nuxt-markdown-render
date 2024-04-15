@@ -1,6 +1,36 @@
 # Changelog
 
 
+## v2.0.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.10.0...v2.0.0)
+
+### 🚀 Enhancements
+
+- Set plugins as optionalDeps ([d2d9312](https://github.com/sandros94/nuxt-markdown-render/commit/d2d9312))
+
+### 🩹 Fixes
+
+- Use NuxtLinks only if mdc is also used ([1bbce7c](https://github.com/sandros94/nuxt-markdown-render/commit/1bbce7c))
+- Optionally lighten up the module ([ad1a816](https://github.com/sandros94/nuxt-markdown-render/commit/ad1a816))
+
+### 💅 Refactors
+
+- ⚠️  Lighten up and moved rendering to component only ([25d75cc](https://github.com/sandros94/nuxt-markdown-render/commit/25d75cc))
+
+### 🏡 Chore
+
+- **release:** V1.10.0 ([c9d3e9f](https://github.com/sandros94/nuxt-markdown-render/commit/c9d3e9f))
+- Recreate pnpm-lock ([8117197](https://github.com/sandros94/nuxt-markdown-render/commit/8117197))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Lighten up and moved rendering to component only ([25d75cc](https://github.com/sandros94/nuxt-markdown-render/commit/25d75cc))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v1.10.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.9.0...v1.10.0)
