@@ -43,13 +43,29 @@ export default defineNuxtPlugin(async nuxtApp => {
   }
 
   if (mdc !== false && vueRuntimeCompiler)
-    md.value.use((await import('markdown-it-mdc')).default, mdc)
+    md.value.use((await import('markdown-it-mdc').catch((err: any) => {
+      // eslint-disable-next-line no-console
+      console.error('[nuxt-markdown-render]: `markdown-it-mdc` is an optional dependency for handling Markdown Components and is not properly installed. Please check your `package.json` or install it again.')
+      throw new Error(err)
+    })).default, mdc)
   if (githubAlerts !== false)
-    md.value.use((await import('markdown-it-github-alerts')).default, githubAlerts)
+    md.value.use((await import('markdown-it-github-alerts').catch((err: any) => {
+      // eslint-disable-next-line no-console
+      console.error('[nuxt-markdown-render]: `markdown-it-github-alerts` is an optional dependency to support Github styled Alerts and is not properly installed. Please check your `package.json` or install it again.')
+      throw new Error(err)
+    })).default, githubAlerts)
   if (anchor !== false)
-    md.value.use((await import('markdown-it-anchor')).default, anchor)
+    md.value.use((await import('markdown-it-anchor').catch((err: any) => {
+      // eslint-disable-next-line no-console
+      console.error('[nuxt-markdown-render]: `markdown-it-anchor` is an optional dependency that adds id and other functionalities to headings and is not properly installed. Please check your `package.json` or install it again.')
+      throw new Error(err)
+    })).default, anchor)
   if (shiki !== false && shiki !== undefined){
-    const shikiPlugin = (await import('@shikijs/markdown-it')).default
+    const shikiPlugin = (await import('@shikijs/markdown-it').catch((err: any) => {
+      // eslint-disable-next-line no-console
+      console.error('[nuxt-markdown-render]: `@shikijs/markdown-it` is an optional dependency that provide powerful syntax highlight and is not properly installed. Please check your `package.json` or install it again.')
+      throw new Error(err)
+    })).default
     md.value.use(await shikiPlugin(shiki))
   }
   return {

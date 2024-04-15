@@ -47,12 +47,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.1",
-    "@shikijs/markdown-it": "^1.2.0",
-    "markdown-it": "14.0.0",
-    "markdown-it-anchor": "^8.6.7",
-    "markdown-it-github-alerts": "^0.3.0",
-    "markdown-it-mdc": "^0.2.3",
-    "markdown-it-table-of-contents": "^0.6.0"
+    "markdown-it": "14.0.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -66,6 +61,12 @@
     "eslint": "^8.57.0",
     "nuxt": "^3.11.1",
     "vitest": "^1.4.0"
+  },
+  "optionalDependencies": {
+    "@shikijs/markdown-it": "^1.2.0",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-github-alerts": "^0.3.0",
+    "markdown-it-mdc": "^0.2.3"
   },
   "pnpm": {
     "overrides": {
