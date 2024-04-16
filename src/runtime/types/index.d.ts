@@ -3,7 +3,7 @@ import type {
   Options as MarkdownItOptions,
   PluginSimple,
 } from 'markdown-it'
-import MarkdownIt from 'markdown-it'
+import type MarkdownIt from 'markdown-it'
 
 export interface Config {
   disable?: string | string[]
