@@ -59,7 +59,7 @@ export default defineNuxtPlugin(async nuxtApp => {
       console.error('[nuxt-markdown-render]: `markdown-it-anchor` is an optional dependency that adds id and other functionalities to headings and is not properly installed. Please check your `package.json` or install it again.')
       throw new Error(err)
     })).default, anchor)
-  if (shiki !== false && shiki !== undefined){
+  if (shiki !== false && shiki !== undefined) {
     const shikiPlugin = (await import('#nuxt-markdown-render/shiki').catch((err: any) => {
       // eslint-disable-next-line no-console
       console.error('[nuxt-markdown-render]: `@shikijs/markdown-it` is an optional dependency that provide powerful syntax highlight and is not properly installed. Please check your `package.json` or install it again.')
@@ -67,6 +67,7 @@ export default defineNuxtPlugin(async nuxtApp => {
     })).default
     md.use(await shikiPlugin(shiki))
   }
+
   return {
     provide: {
       md
