@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v2.0.2
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v2.0.1...v2.0.2)
+
+### 🩹 Fixes
+
+- New or reusable md instance logic ([22de78f](https://github.com/sandros94/nuxt-markdown-render/commit/22de78f))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v2.0.1
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v2.0.0...v2.0.1)
