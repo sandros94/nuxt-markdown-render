@@ -23,7 +23,7 @@ import type { Config } from '../types'
  * - `content` - the rendered markdown content
  * - `md` - a blank markdown-it instance
  */
-export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | undefined> } & Partial<Config>) => {
+export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | undefined> } & Config) => {
 
   const { source, ...paramsRest } = params ?? {}
   const { $md } = useNuxtApp()

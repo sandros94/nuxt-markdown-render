@@ -3,18 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Component } from 'vue'
-import type { Config } from '../types'
+import type { NuxtMarkdownExpose, NuxtMarkdownProps } from '../types'
 import { useNuxtMarkdown, useRuntimeConfig } from '#imports'
 import { h, toRefs, getCurrentInstance } from 'vue'
 import { NuxtLink } from '#components'
 import { defu } from 'defu'
-
-interface Props extends Partial<Config> {
-  as?: string
-  components?: Record<string, Component>
-  source?: string
-}
 
 const {
   as: defaultAs,
@@ -26,7 +19,7 @@ const {
 } = useRuntimeConfig().public.nuxtMarkdownRender
 const globalComponents = getCurrentInstance()?.appContext.components
 
-const props = defineProps<Props>()
+const props = defineProps<NuxtMarkdownProps>()
 
 const configDef = defu({
   as: props.as,
@@ -60,7 +53,7 @@ const NuxtMarkdown = () => {
   }
 }
 
-defineExpose({
+defineExpose<NuxtMarkdownExpose>({
   blank,
   content,
   md,
