@@ -147,13 +147,26 @@ export default defineNuxtModule<ModuleOptions>({
         from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown'),
         name: 'useNuxtMarkdown'
       })
-    
+
     if (nuxtMarkdownOptions.component !== false)
       addComponent({
         filePath: resolve(runtimeDir, 'components', 'nuxt-markdown'),
         global: options.global,
         name: nuxtMarkdownOptions.component
       })
+
+    nuxt.options.alias['#nuxt-markdown-render/anchor'] = nuxtMarkdownOptions.plugins.anchor !== false
+      ? 'markdown-it-anchor'
+      : 'unenv/runtime/mock/empty'
+    nuxt.options.alias['#nuxt-markdown-render/github-alerts'] = nuxtMarkdownOptions.plugins.githubAlerts !== false
+      ? 'markdown-it-github-alerts'
+      : 'unenv/runtime/mock/empty'
+    nuxt.options.alias['#nuxt-markdown-render/mdc'] = (nuxtMarkdownOptions.plugins.mdc !== false && nuxt.options.vue.runtimeCompiler)
+      ? 'markdown-it-mdc'
+      : 'unenv/runtime/mock/empty'
+    nuxt.options.alias['#nuxt-markdown-render/shiki'] = nuxtMarkdownOptions.plugins.shiki !== false
+      ? '@shikijs/markdown-it'
+      : 'unenv/runtime/mock/empty'
   }
 })
 
