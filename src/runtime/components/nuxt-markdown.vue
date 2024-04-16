@@ -48,17 +48,17 @@ const { content, md } = useNuxtMarkdown({
 })
 
 const NuxtMarkdown = () => {
-    if (!vueRuntimeCompiler) {
-      return h(configDef.as, { innerHTML: content.value, })
-    } else {
-      return h(configDef.as, [
-        h({
-          components: configDef.components,
-          template: content.value,
-        })
-      ])
-    }
+  if (!vueRuntimeCompiler) {
+    return h(configDef.as, { innerHTML: content.value, })
+  } else {
+    return h(configDef.as, [
+      h({
+        components: configDef.components,
+        template: content.value,
+      })
+    ])
   }
+}
 
 defineExpose({
   content,

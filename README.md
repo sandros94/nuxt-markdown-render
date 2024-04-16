@@ -19,7 +19,7 @@ Much inspired by [vue-markdown-render](https://github.com/cloudacy/vue-markdown-
 <!-- Highlight some of the features your module provide here -->
 - ✨ &nbsp;Ease of use
 - 🔋 &nbsp;Battery included ([mdc](https://github.com/antfu/markdown-it-mdc), [shiki](https://github.com/shikijs/shiki), [anchor](https://github.com/valeriangalliat/markdown-it-anchor), [link-attrbs](https://github.com/crookedneighbor/markdown-it-link-attributes), [GitHub Alerts](https://github.com/antfu/markdown-it-github-alerts))
-- 🧩 &nbsp;Extensible via markdown-it plugins
+- 🧩 &nbsp;Extensible via `markdown-it` plugins
 - 🎨 &nbsp;Customizable (both via `runtimeConfig` as well as via `props`)
 - 📘 &nbsp;TypeScript support
 
@@ -135,7 +135,7 @@ Some plugins, such asynchronous ones, do require to be handled directly by `useN
     })
     ```
 
-2. Create your own `~/components/NuxtMarkdown.vue`, with the following structure (substitute plugins with the desired ones):
+2. Create your own `~/components/NuxtMarkdown.vue`, with the following structure (substitute plugins with the desired ones, since these come pre-installed):
     ```vue
     <template>
       <NuxtMarkdown />
@@ -151,17 +151,18 @@ Some plugins, such asynchronous ones, do require to be handled directly by `useN
     import { Alert, Grid } from '#components'
 
     const props = defineProps({
+      as: {
+        type: String
+        required: false
+        default: 'div'
+      },
       source: {
         type: String,
         required: true,
       },
     })
 
-    const { rendered: NuxtMarkdown, md } = useNuxtMarkdown(props.source, {
-      components: {
-        Alert,
-        Grid
-      },
+    const { md, content } = useNuxtMarkdown(props.source, {
       plugins: [
         await shiki({
           themes: {
@@ -174,6 +175,18 @@ Some plugins, such asynchronous ones, do require to be handled directly by `useN
     })
 
     md.value.use(anchor, { level: 2 })
+
+    const NuxtMarkdown = () => {
+      return h(props.as, [
+        h({
+          components: {
+            Alert,
+            Grid
+          },
+          template: content.value,
+        })
+      ])
+    }
     </script>
     ```
 
@@ -187,11 +200,8 @@ The following are the available exports for `useNuxtMarkdown` composable.
 
 ```ts
 const {
-  config,     // configs in use, currently for debuging purposes
-  content,    // rendered content from markdown-it
-  $md,        // a globally available markdown-it instance (via Nuxt plugin)
-  md,         // a blank markdown-it instance, usefull for one time renders
-  rendered,   // rendered vue component based on `content`
+  content,  // rendered content from markdown-it
+  md,       // the markdown-it instance
 } = useNuxtMarkdown(source, configs)
 ```
 
