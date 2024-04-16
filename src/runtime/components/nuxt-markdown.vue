@@ -1,5 +1,5 @@
 <template>
-  <NuxtMarkdown />
+  <NuxtMarkdown v-bind="props" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ const {
   plugins: {
     mdc,
   },
-  useNuxtLink,
+  useNuxtLink: useLink,
   vueRuntimeCompiler,
 } = useRuntimeConfig().public.nuxtMarkdownRender
 const globalComponents = getCurrentInstance()?.appContext.components
@@ -23,21 +23,24 @@ const props = defineProps<NuxtMarkdownProps>()
 
 const configDef = defu({
   as: props.as,
+  useNuxtLink: props.useNuxtLink,
   components: props.components,
 }, {
   as: defaultAs,
+  useNuxtLink: useLink,
   components: { ...globalComponents },
 })
 
-if (mdc !== false && useNuxtLink && vueRuntimeCompiler) {
+if (mdc !== false && configDef.useNuxtLink && vueRuntimeCompiler) {
   configDef.components = { ...configDef.components, NuxtLink }
 }
 
 const { blank, content, md } = useNuxtMarkdown({
-  source: toRefs(props).source,
   new: props.new,
   options: props.options,
   plugins: props.plugins,
+  source: toRefs(props).source,
+  useNuxtLink: configDef.useNuxtLink,
 })
 
 const NuxtMarkdown = () => {
