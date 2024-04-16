@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v2.0.1
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v2.0.0...v2.0.1)
+
+### 🩹 Fixes
+
+- Remove ref from plugin fixes #13 ([#13](https://github.com/sandros94/nuxt-markdown-render/issues/13))
+- Remove ref from plugin fixes #13 ([#13](https://github.com/sandros94/nuxt-markdown-render/issues/13))
+- Reduce final bundle size by setting plugins to false ([2aba34d](https://github.com/sandros94/nuxt-markdown-render/commit/2aba34d))
+
+### 📖 Documentation
+
+- Update readme to follow latest changes ([dd265d7](https://github.com/sandros94/nuxt-markdown-render/commit/dd265d7))
+
+### 🏡 Chore
+
+- Set plugins as optional deps ([bb7526d](https://github.com/sandros94/nuxt-markdown-render/commit/bb7526d))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v2.0.0
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v1.10.0...v2.0.0)
