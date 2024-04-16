@@ -47,11 +47,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.1",
-    "markdown-it": "14.0.0",
-    "@shikijs/markdown-it": "^1.2.0",
-    "markdown-it-anchor": "^8.6.7",
-    "markdown-it-github-alerts": "^0.3.0",
-    "markdown-it-mdc": "^0.2.3"
+    "markdown-it": "14.0.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -66,7 +62,12 @@
     "nuxt": "^3.11.1",
     "vitest": "^1.4.0"
   },
-  "optionalDependencies": {},
+  "optionalDependencies": {
+    "@shikijs/markdown-it": "^1.2.0",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-github-alerts": "^0.3.0",
+    "markdown-it-mdc": "^0.2.3"
+  },
   "pnpm": {
     "overrides": {
       "uc.micro": "2.0.0"
