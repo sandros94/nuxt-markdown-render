@@ -45,10 +45,13 @@ export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | un
     useNuxtLink
   })
 
-  // TODO: Add support to optionally inherit from nuxt config
-  const md: Ref<MarkdownIt> = ref<MarkdownIt>(new MarkdownIt(configDef.options ?? {}))
+  // Check if a new istance is required
+  const newRequired = ref(!!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || paramsRest.options))
 
-  if (mdc !== false && useNuxtLink && vueRuntimeCompiler) {
+  // TODO: Add support to optionally inherit from nuxt config
+  const md: Ref<MarkdownIt> = ref<MarkdownIt>(newRequired.value ? new MarkdownIt(configDef.options ?? {}) : $md)
+
+  if (mdc !== false && useNuxtLink && vueRuntimeCompiler && newRequired) {
     md.value.renderer.rules.link_open = function (tokens, idx, options, env, slf) {
       const token = tokens[idx]
       token.attrs = token.attrs && token.attrs.map(attr => {
@@ -74,17 +77,7 @@ export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | un
     }
   }
 
-  // Check if a new istance is required
-  const newRequired = !!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || paramsRest.options)
-
-  const content = computed(() => {
-    if (newRequired) {
-      return md.value.render(toValue(source) ?? '')
-    }
-    else {
-      return $md.render(toValue(source) ?? '')
-    }
-  })
+  const content = computed(() => md.value.render(toValue(source) ?? ''))
 
   return {
     blank: newRequired,

@@ -40,7 +40,7 @@ if (mdc !== false && useNuxtLink && vueRuntimeCompiler) {
   configDef.components = { ...configDef.components, NuxtLink }
 }
 
-const { content, md } = useNuxtMarkdown({
+const { blank, content, md } = useNuxtMarkdown({
   source: toRefs(props).source,
   new: props.new,
   options: props.options,
@@ -61,6 +61,7 @@ const NuxtMarkdown = () => {
 }
 
 defineExpose({
+  blank,
   content,
   md,
 })
