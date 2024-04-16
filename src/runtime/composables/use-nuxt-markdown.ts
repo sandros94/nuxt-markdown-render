@@ -82,7 +82,7 @@ export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | un
       return md.value.render(toValue(source) ?? '')
     }
     else {
-      return $md.value.render(toValue(source) ?? '')
+      return $md.render(toValue(source) ?? '')
     }
   })
 
