@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v2.1.0
+
+[compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v2.0.2...v2.1.0)
+
+### 🚀 Enhancements
+
+- Type interfaces fo component's props and expose ([fc14440](https://github.com/sandros94/nuxt-markdown-render/commit/fc14440))
+- New renderer component ([5242807](https://github.com/sandros94/nuxt-markdown-render/commit/5242807))
+
+### 🩹 Fixes
+
+- Set import to type ([764f14d](https://github.com/sandros94/nuxt-markdown-render/commit/764f14d))
+- Components defaults ([7969208](https://github.com/sandros94/nuxt-markdown-render/commit/7969208))
+- Make `blank` a readonly boolean ref ([a1fc28f](https://github.com/sandros94/nuxt-markdown-render/commit/a1fc28f))
+
+### 📖 Documentation
+
+- Add info for `blank` ([fb7cab2](https://github.com/sandros94/nuxt-markdown-render/commit/fb7cab2))
+
+### 🏡 Chore
+
+- **release:** V2.0.2 ([d2b3bf4](https://github.com/sandros94/nuxt-markdown-render/commit/d2b3bf4))
+
+### ❤️ Contributors
+
+- Sandros94 ([@Sandros94](http://github.com/Sandros94))
+
 ## v2.0.2
 
 [compare changes](https://github.com/sandros94/nuxt-markdown-render/compare/v2.0.1...v2.0.2)
