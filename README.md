@@ -200,6 +200,7 @@ The following are the available exports for `useNuxtMarkdown` composable.
 
 ```ts
 const {
+  blank,    // a computed boolean if a new markdown-it instance is being created
   content,  // rendered content from markdown-it
   md,       // the markdown-it instance
 } = useNuxtMarkdown(source, configs)
