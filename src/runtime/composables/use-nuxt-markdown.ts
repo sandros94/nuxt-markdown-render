@@ -46,7 +46,7 @@ export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | un
   })
 
   // Check if a new istance is required
-  const newRequired = ref(!!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || paramsRest.options))
+  const newRequired = computed(() => !!(configDef.new || configDef.disable || configDef.enable || configDef.plugins || paramsRest.options))
 
   // TODO: Add support to optionally inherit from nuxt config
   const md: Ref<MarkdownIt> = ref<MarkdownIt>(newRequired.value ? new MarkdownIt(configDef.options ?? {}) : $md)
