@@ -14,11 +14,13 @@ export interface Config {
   useNuxtLink?: boolean
 }
 
-export interface NuxtMarkdownProps extends Config {
+export interface NuxtMarkdownRendererProps extends Pick<Config, 'useNuxtLink'> {
   as?: string
   components?: Record<string, Component>
   source?: string
 }
+
+export type NuxtMarkdownProps = NuxtMarkdownRendererProps & Config
 
 export interface NuxtMarkdownExpose {
   blank: Ref<boolean>

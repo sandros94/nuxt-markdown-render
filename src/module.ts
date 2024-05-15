@@ -140,6 +140,10 @@ export default defineNuxtModule<ModuleOptions>({
     addPlugin({
       src: resolve(runtimeDir, 'plugins', 'nuxt-markdown'),
     })
+    addComponent({
+      filePath: resolve(runtimeDir, 'components', 'nuxt-markdown-renderer'),
+      name: 'NuxtMarkdownRenderer'
+    })
 
     if (nuxtMarkdownOptions.composable !== false)
       addImports({

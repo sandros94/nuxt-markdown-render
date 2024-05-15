@@ -130,7 +130,10 @@ Some plugins, such asynchronous ones, do require to be handled directly by `useN
         'nuxt-markdown-render'
       ],
       nuxtMarkdownRender: {
-        component: false
+        component: false,
+        plugins: {
+          shiki: false,
+        },
       },
     })
     ```
@@ -138,29 +141,21 @@ Some plugins, such asynchronous ones, do require to be handled directly by `useN
 2. Create your own `~/components/NuxtMarkdown.vue`, with the following structure (substitute plugins with the desired ones, since these come pre-installed):
     ```vue
     <template>
-      <NuxtMarkdown />
+      <NuxtMarkdownRenderer :as="props.as" :components="{ Alert, Grid }" :source="content" />
     </template>
 
     <script setup lang="ts">
     // import installed plugins
-    import anchor from 'markdown-it-anchor'
     import shiki from '@shikijs/markdown-it'
-    import mdcPlugin from 'markdown-it-mdc'
+    import otherPlugin from 'markdown-it-otherPlugin'
 
     // Import your other components
-    import { Alert, Grid } from '#components'
+    import { Alert, Grid } from '#components' // if you are using the `markdown-it-mdc` plugin
 
-    const props = defineProps({
-      as: {
-        type: String
-        required: false
-        default: 'div'
-      },
-      source: {
-        type: String,
-        required: true,
-      },
-    })
+    const props = defineProps<
+      as?: string
+      source?: string
+    >()
 
     const { md, content } = useNuxtMarkdown(props.source, {
       plugins: [
@@ -170,23 +165,10 @@ Some plugins, such asynchronous ones, do require to be handled directly by `useN
             dark: 'vitesse-dark'
           }
         }),
-        mdcPlugin
       ],
     })
 
-    md.value.use(anchor, { level: 2 })
-
-    const NuxtMarkdown = () => {
-      return h(props.as, [
-        h({
-          components: {
-            Alert,
-            Grid
-          },
-          template: content.value,
-        })
-      ])
-    }
+    md.value.use(otherPlugin, { setting: 'my pick' }) // plugin with options
     </script>
     ```
 
