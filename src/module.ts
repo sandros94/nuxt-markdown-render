@@ -1,51 +1,51 @@
+import { fileURLToPath } from 'node:url'
 import {
   defineNuxtModule,
   addComponent,
   addImports,
   addPlugin,
-  createResolver
+  createResolver,
 } from '@nuxt/kit'
 import type { Options as MarkdownItOptions } from 'markdown-it'
 import type { MarkdownItMdcOptions } from 'markdown-it-mdc'
 import type { MarkdownItGitHubAlertsOptions } from 'markdown-it-github-alerts'
 import type { MarkdownItShikiOptions } from '@shikijs/markdown-it'
 import defu from 'defu'
-import { fileURLToPath } from 'url'
 
 export interface ModuleOptions {
   /**
    * HTML tag name for the component.
-   * 
+   *
    * @default 'div'
    */
   as: string
   /**
    * Component's default name.
-   * 
+   *
    * @default 'NuxtMarkdown'
    */
   component: string | false
   /**
    * Composable's default name.
-   * 
+   *
    * @default 'useNuxtMarkdown'
    */
   composable: string | false
   /**
    * The markdown-it rules to disable.
-   * 
+   *
    * @default undefined
    */
   disable?: string | string[]
   /**
    * The markdown-it rules to disable.
-   * 
+   *
    * @default undefined
    */
   enable?: string | string[]
   /**
    * Register the component globally.
-   * 
+   *
    * @default false
    */
   global: boolean | 'sync'
@@ -62,7 +62,7 @@ export interface ModuleOptions {
   }
   /**
    * Use NuxtLink component for links.
-   * 
+   *
    * @default true
    */
   useNuxtLink: boolean
@@ -78,8 +78,8 @@ export default defineNuxtModule<ModuleOptions>({
     name: 'nuxt-markdown-render',
     configKey: 'nuxtMarkdownRender',
     compatibility: {
-      nuxt: '^3.5.0'
-    }
+      nuxt: '^3.5.0',
+    },
   },
   defaults: {
     as: 'div',
@@ -100,15 +100,15 @@ export default defineNuxtModule<ModuleOptions>({
       shiki: {
         themes: {
           light: 'github-light',
-          dark: 'github-dark'
-        }
+          dark: 'github-dark',
+        },
       },
-      anchor: {}
+      anchor: {},
     },
     useNuxtLink: true,
-    vueRuntimeCompiler: true
+    vueRuntimeCompiler: true,
   },
-  setup (options, nuxt) {
+  setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
 
@@ -127,11 +127,11 @@ export default defineNuxtModule<ModuleOptions>({
           githubAlerts: options.plugins.githubAlerts,
           mdc: options.plugins.mdc,
           shiki: options.plugins.shiki,
-          anchor: options.plugins.anchor
+          anchor: options.plugins.anchor,
         },
         useNuxtLink: options.useNuxtLink,
-        vueRuntimeCompiler: options.vueRuntimeCompiler
-      }
+        vueRuntimeCompiler: options.vueRuntimeCompiler,
+      },
     )
 
     if (nuxtMarkdownOptions.vueRuntimeCompiler)
@@ -142,21 +142,21 @@ export default defineNuxtModule<ModuleOptions>({
     })
     addComponent({
       filePath: resolve(runtimeDir, 'components', 'nuxt-markdown-renderer'),
-      name: 'NuxtMarkdownRenderer'
+      name: 'NuxtMarkdownRenderer',
     })
 
     if (nuxtMarkdownOptions.composable !== false)
       addImports({
-        as : nuxtMarkdownOptions.composable,
+        as: nuxtMarkdownOptions.composable,
         from: resolve(runtimeDir, 'composables', 'use-nuxt-markdown'),
-        name: 'useNuxtMarkdown'
+        name: 'useNuxtMarkdown',
       })
 
     if (nuxtMarkdownOptions.component !== false)
       addComponent({
         filePath: resolve(runtimeDir, 'components', 'nuxt-markdown'),
         global: options.global,
-        name: nuxtMarkdownOptions.component
+        name: nuxtMarkdownOptions.component,
       })
 
     nuxt.options.alias['#nuxt-markdown-render/anchor'] = nuxtMarkdownOptions.plugins.anchor !== false
@@ -171,16 +171,16 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.alias['#nuxt-markdown-render/shiki'] = nuxtMarkdownOptions.plugins.shiki !== false
       ? '@shikijs/markdown-it'
       : 'unenv/runtime/mock/empty'
-  }
+  },
 })
 
 declare module '@nuxt/schema' {
   interface NuxtOptions {
-    nuxtMarkdownRender?: ModuleOptions;
+    nuxtMarkdownRender?: ModuleOptions
     runtimeConfig: {
       public: {
-        nuxtMarkdownRender: ModuleOptions;
-      };
-    };
+        nuxtMarkdownRender: ModuleOptions
+      }
+    }
   }
 }

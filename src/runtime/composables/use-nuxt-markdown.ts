@@ -4,12 +4,12 @@ import { defu } from 'defu'
 
 import MarkdownIt from 'markdown-it'
 
-import { useRuntimeConfig, useNuxtApp } from '#imports'
 import type { Config } from '../types'
+import { useRuntimeConfig, useNuxtApp } from '#imports'
 
 /**
  * The main composable to access or customize md, renderer and content.
- * 
+ *
  * @param params - An object containing the following properties:
  * - `disable` - The markdown-it rules to disable
  * - `enable` - The markdown-it rules to enable
@@ -17,14 +17,13 @@ import type { Config } from '../types'
  * - `options` - The markdown-it options
  * - `plugins` - The markdown-it plugins
  * - `source` - The markdown source string
- * 
+ *
  * @returns an object with the following properties:
  * - `blank` - whether a new md instance is used
  * - `content` - the rendered markdown content
  * - `md` - a blank markdown-it instance
  */
 export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | undefined> } & Config) => {
-
   const { source, ...paramsRest } = params ?? {}
   const { $md } = useNuxtApp()
 
@@ -42,7 +41,7 @@ export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | un
     new: false,
     options: undefined,
     plugins: undefined,
-    useNuxtLink
+    useNuxtLink,
   })
 
   // Check if a new istance is required
@@ -54,13 +53,15 @@ export const useNuxtMarkdown = (params?: { source?: MaybeRefOrGetter<string | un
   if (mdc !== false && useNuxtLink && vueRuntimeCompiler && newRequired) {
     md.value.renderer.rules.link_open = function (tokens, idx, options, env, slf) {
       const token = tokens[idx]
-      token.attrs = token.attrs && token.attrs.map(attr => {
+      token.attrs = token.attrs && token.attrs.map((attr) => {
         if (attr[0] === 'href') attr[0] = 'to'
         return attr
       })
       return '<NuxtLink' + slf.renderAttrs(token) + '>'
     }
-    md.value.renderer.rules.link_close = function () { return '</NuxtLink>' }
+    md.value.renderer.rules.link_close = function () {
+      return '</NuxtLink>'
+    }
   }
 
   if (configDef.enable) {

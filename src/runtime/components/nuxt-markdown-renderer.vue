@@ -3,11 +3,11 @@
 </template>
 
 <script setup lang="ts">
+import { h, getCurrentInstance } from 'vue'
+import { defu } from 'defu'
 import type { NuxtMarkdownRendererProps } from '../types'
 import { useRuntimeConfig } from '#imports'
-import { h, getCurrentInstance } from 'vue'
 import { NuxtLink } from '#components'
-import { defu } from 'defu'
 
 const {
   as: defaultAs,
@@ -37,13 +37,14 @@ if (mdc !== false && configDef.useNuxtLink && vueRuntimeCompiler) {
 
 const NuxtMarkdownRenderer = () => {
   if (!vueRuntimeCompiler) {
-    return h(configDef.as, { innerHTML: props.source, })
-  } else {
+    return h(configDef.as, { innerHTML: props.source })
+  }
+  else {
     return h(configDef.as, [
       h({
         components: configDef.components,
         template: props.source,
-      })
+      }),
     ])
   }
 }

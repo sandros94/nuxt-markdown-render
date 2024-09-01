@@ -3,11 +3,11 @@
 </template>
 
 <script setup lang="ts">
+import { reactivePick } from '@vueuse/core'
+import { toRefs } from 'vue'
 import type { NuxtMarkdownExpose, NuxtMarkdownProps } from '../types'
 import { NuxtMarkdownRenderer } from '#components'
-import { reactivePick } from '@vueuse/core'
 import { useNuxtMarkdown } from '#imports'
-import { toRefs } from 'vue'
 
 const props = defineProps<NuxtMarkdownProps>()
 const rendererProps = reactivePick(props, 'as', 'components', 'useNuxtLink')
