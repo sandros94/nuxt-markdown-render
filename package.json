@@ -2,6 +2,7 @@
   "name": "nuxt-markdown-render",
   "version": "2.1.0",
   "description": "A simple, lightweight markdown-it wrapper for Nuxt written in pure typescript.",
+  "repository": "https://github.com/sandros94/nuxt-markdown-render",
   "keywords": [
     "nuxt",
     "nuxt-module",
@@ -9,7 +10,6 @@
     "markdown",
     "markdown-it"
   ],
-  "repository": "https://github.com/sandros94/nuxt-markdown-render",
   "license": "MIT",
   "type": "module",
   "author": {
@@ -39,11 +39,12 @@
     "dev:build": "nuxi build playground",
     "dev:preview": "nuxi preview playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "nr lint && nr test && nr prepack && changelogen --release && na publish && git push --follow-tags",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
   },
   "dependencies": {
     "@nuxt/kit": "^3.13.0",
