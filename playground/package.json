@@ -8,6 +8,7 @@
     "generate": "nuxi generate"
   },
   "devDependencies": {
+    "nuxt-markdown-render": "latest",
     "nuxt": "latest"
   }
 }
