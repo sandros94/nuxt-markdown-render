@@ -50,10 +50,13 @@
     "@nuxt/kit": "^3.13.0",
     "@shikijs/markdown-it": "^1.2.0",
     "@vueuse/core": "^10.9.0",
+    "defu": "^6.1.4",
+    "exsolve": "^1.0.4",
     "markdown-it": "14.0.0",
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-github-alerts": "^0.3.0",
-    "markdown-it-mdc": "^0.2.3"
+    "markdown-it-mdc": "^0.2.3",
+    "mocked-exports": "^0.1.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
