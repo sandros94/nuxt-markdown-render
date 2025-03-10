@@ -11,6 +11,7 @@ import type { MarkdownItMdcOptions } from 'markdown-it-mdc'
 import type { MarkdownItGitHubAlertsOptions } from 'markdown-it-github-alerts'
 import type { MarkdownItShikiOptions } from '@shikijs/markdown-it'
 import defu from 'defu'
+import { resolveModulePath } from 'exsolve'
 
 export interface ModuleOptions {
   /**
@@ -159,18 +160,20 @@ export default defineNuxtModule<ModuleOptions>({
         name: nuxtMarkdownOptions.component,
       })
 
+    const emptyMock = resolveModulePath('mocked-exports/empty', { from: import.meta.url })
+
     nuxt.options.alias['#nuxt-markdown-render/anchor'] = nuxtMarkdownOptions.plugins.anchor !== false
       ? 'markdown-it-anchor'
-      : 'unenv/runtime/mock/empty'
+      : emptyMock
     nuxt.options.alias['#nuxt-markdown-render/github-alerts'] = nuxtMarkdownOptions.plugins.githubAlerts !== false
       ? 'markdown-it-github-alerts'
-      : 'unenv/runtime/mock/empty'
+      : emptyMock
     nuxt.options.alias['#nuxt-markdown-render/mdc'] = (nuxtMarkdownOptions.plugins.mdc !== false && nuxt.options.vue.runtimeCompiler)
       ? 'markdown-it-mdc'
-      : 'unenv/runtime/mock/empty'
+      : emptyMock
     nuxt.options.alias['#nuxt-markdown-render/shiki'] = nuxtMarkdownOptions.plugins.shiki !== false
       ? '@shikijs/markdown-it'
-      : 'unenv/runtime/mock/empty'
+      : emptyMock
   },
 })
 
